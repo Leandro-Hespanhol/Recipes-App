@@ -28,7 +28,12 @@ function Header({ title, buttonDisable }) {
 
       {
         !buttonDisable && (
-          <button type="button" data-testid="search-top-btn" onClick={ onSearchIconClick } src={ searchIcon } >
+          <button
+            type="button"
+            data-testid="search-top-btn"
+            onClick={ onSearchIconClick }
+            src={ searchIcon }
+          >
             <img src={ searchIcon } alt="search icon" />
           </button>
         )
@@ -52,6 +57,7 @@ function Header({ title, buttonDisable }) {
 }
 
 Header.propTypes = {
+  buttonDisable: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
 };
 

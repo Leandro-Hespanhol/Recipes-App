@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
 import Perfil from '../pages/Perfil';
-import Explorar from '../pages/Explorar';
+import Explorar from '../pages/explorar/Explorar';
 import Bebidas from '../pages/Bebidas';
 // import Footer from '../components/Footer';
 
