@@ -25,7 +25,13 @@ export const getFirstRecipes = async (type) => {
     .then(({ drinks }) => drinks);
 };
 
-export const getByIngredients = async (ingredient) => {
+export const getByIngredients = async (type, ingredient) => {
+  if (type === 'food') {
+    const ingredients = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
+      .then((res) => res.json())
+      .then(({ meals }) => meals);
+    return ingredients;
+  }
   const ingredients = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`)
     .then((res) => res.json())
     .then(({ drinks }) => drinks);
@@ -44,4 +50,30 @@ export const getByFirstLetter = async (letter) => {
     .then((res) => res.json())
     .then(({ drinks }) => drinks);
   return ingredients;
+};
+
+export const getCategories = async (type) => {
+  if (type === 'food') {
+    const categories = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list')
+      .then((res) => res.json())
+      .then(({ meals }) => meals);
+    return categories.slice(0, +'5');
+  }
+  const categories = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
+    .then((res) => res.json())
+    .then(({ drinks }) => drinks);
+  return categories.slice(0, +'5');
+};
+
+export const getCategoriesItens = async (type, categories) => {
+  if (type === 'food') {
+    const recipes = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categories}`)
+      .then((res) => res.json())
+      .then(({ meals }) => meals);
+    return recipes;
+  }
+  const recipes = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${categories}`)
+    .then((res) => res.json())
+    .then(({ drinks }) => drinks);
+  return recipes;
 };
