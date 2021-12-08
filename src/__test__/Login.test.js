@@ -4,5 +4,4 @@ import App from '../App';
 
 describe('Testa a pagina de Login', () => {
   render(<App />);
-
 });
