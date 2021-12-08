@@ -4,12 +4,13 @@ import { myContext } from '../context/Provider';
 import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
 import mealsIcon from '../images/mealIcon.svg';
+import '../App.css';
 
 export default function Footer() {
   const { setType } = useContext(myContext);
 
   return (
-    <footer data-testid="footer">
+    <footer data-testid="footer" className="footer">
       <Link to="/bebidas">
         <button
           onClick={ () => setType('drinks') }

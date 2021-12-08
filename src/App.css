@@ -37,6 +37,15 @@
   font-weight: 900;
 }
 
+.footer {
+  background-color: aliceblue;
+  border: 2px solid black;
+  bottom: 0;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+}
+
 @keyframes shake {
 
   0% {
