@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getFirstRecipes } from '../services/funcs';
-import Footer from '../components/Footer';
+import Categories from '../components/Categories';
 import Cards from '../components/Cards';
+import Footer from '../components/Footer';
 
 export default function Bebidas() {
   const [info, setInfo] = useState([]);
@@ -17,6 +18,7 @@ export default function Bebidas() {
 
   return (
     <div>
+      <Categories updateInfo={ setInfo } type="drinks" />
       <Cards info={ info } type="drinks" />
       <Footer />
     </div>

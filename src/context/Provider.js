@@ -4,11 +4,14 @@ import PropTypes from 'prop-types';
 export const myContext = createContext();
 
 const Provider = ({ children }) => {
-  const [type, setType] = useState('food');
+  const [category, setCategory] = useState('all');
+  const [recipes, setRecipes] = useState([]);
 
   const value = {
-    type,
-    setType,
+    category,
+    recipes,
+    setCategory,
+    setRecipes,
   };
 
   return (
