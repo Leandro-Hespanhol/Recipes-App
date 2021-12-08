@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Bebida = ({ match: { params: { id } } }) => {
   console.log(id);
   return (
-    <div>o</div>
+    <div>oi</div>
   );
 };
 
