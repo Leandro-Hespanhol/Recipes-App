@@ -11,7 +11,10 @@ const Comidas = () => {
     category,
     recipes,
     setRecipes,
+    setFoodOrDrink,
   } = useContext(myContext);
+
+  setFoodOrDrink('food');
 
   const getItens = async () => {
     const newRecipes = await getFirstRecipes('food');
