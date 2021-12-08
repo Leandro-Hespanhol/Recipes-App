@@ -11,7 +11,10 @@ export default function Bebidas() {
     category,
     recipes,
     setRecipes,
+    setFoodOrDrink,
   } = useContext(myContext);
+
+  setFoodOrDrink('drink');
 
   const getItens = async () => {
     const newRecipes = await getFirstRecipes('drinks');
