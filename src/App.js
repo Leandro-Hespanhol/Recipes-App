@@ -13,6 +13,8 @@ import ExplorarBebidas from './pages/explorar/ExplorarBebidas';
 import ExplorarBebidasIngredientes from './pages/explorar/ExplorarBebidasIngredientes';
 import ExplorarComidasIngredientes from './pages/explorar/ExplorarComidasIngredientes';
 import ExplorarComidasArea from './pages/explorar/ExplorarComidasArea';
+import Comida from './pages/Comida';
+import Bebida from './pages/Bebida';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={ Login } />
           <Route exact path="/comidas" component={ Comidas } />
+          <Route exact path="/comidas/:id" component={ Comida } />
+          <Route exact path="/bebidas/:id" component={ Bebida } />
           <Route exact path="/bebidas" component={ Bebidas } />
           <Route exact path="/perfil" component={ Perfil } />
           <Route exact path="/receitas-feitas" component={ ReceitasFeitas } />

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import '../css/Cards.css';
 
 const Cards = ({ info, type }) => {
@@ -12,21 +13,25 @@ const Cards = ({ info, type }) => {
         strMealThumb,
         strMeal,
       }, index) => (
-        <div
-          data-testid={ `${index}-recipe-card` }
+        <Link
+          to={ `comidas/${idMeal}` }
           key={ idMeal }
         >
-          <img
-            data-testid={ `${index}-card-img` }
-            src={ strMealThumb }
-            alt={ strMealThumb }
-          />
-          <h2
-            data-testid={ `${index}-card-name` }
+          <div
+            data-testid={ `${index}-recipe-card` }
           >
-            { strMeal }
-          </h2>
-        </div>
+            <img
+              data-testid={ `${index}-card-img` }
+              src={ strMealThumb }
+              alt={ strMealThumb }
+            />
+            <h2
+              data-testid={ `${index}-card-name` }
+            >
+              { strMeal }
+            </h2>
+          </div>
+        </Link>
       ));
       return elements;
     }
@@ -35,21 +40,25 @@ const Cards = ({ info, type }) => {
       strDrinkThumb,
       strDrink,
     }, index) => (
-      <div
-        data-testid={ `${index}-recipe-card` }
+      <Link
+        to={ `bebidas/${idDrink}` }
         key={ idDrink }
       >
-        <img
-          data-testid={ `${index}-card-img` }
-          src={ strDrinkThumb }
-          alt={ strDrinkThumb }
-        />
-        <h2
-          data-testid={ `${index}-card-name` }
+        <div
+          data-testid={ `${index}-recipe-card` }
         >
-          { strDrink }
-        </h2>
-      </div>
+          <img
+            data-testid={ `${index}-card-img` }
+            src={ strDrinkThumb }
+            alt={ strDrinkThumb }
+          />
+          <h2
+            data-testid={ `${index}-card-name` }
+          >
+            { strDrink }
+          </h2>
+        </div>
+      </Link>
     ));
     return elements;
   };
