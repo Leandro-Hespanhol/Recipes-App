@@ -41,6 +41,7 @@ const Categories = ({ type }) => {
   return (
     <div>
       <button
+        data-testid="All-category-filter"
         type="button"
         onClick={ () => setCategory('All') }
       >
