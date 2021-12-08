@@ -14,6 +14,17 @@ export const getItemFromLocalStorage = (item) => {
   return JSON.parse(strItem);
 };
 
+export const getFirstRecipes = async (type) => {
+  if (type === 'food') {
+    return fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+      .then((res) => res.json())
+      .then(({ meals }) => meals);
+  }
+  return fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
+    .then((res) => res.json())
+    .then(({ drinks }) => drinks);
+};
+
 export const getByIngredients = async (ingredient) => {
   const ingredients = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`)
     .then((res) => res.json())

@@ -1,0 +1,18 @@
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80vw;
+}
+
+.cards-container div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  width: 300px;
+}
+
+.cards-container img {
+  height: 80%;
+  width: 100%;
+}
