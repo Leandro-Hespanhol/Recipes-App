@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { myContext } from '../context/Provider';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
-function Header() {
+function Header({ title, buttonDisable }) {
   const { foodName, setFoodName } = useContext(myContext);
   const [inputDisable, setInputDisable] = useState(true);
 
@@ -12,30 +13,46 @@ function Header() {
     setInputDisable(!inputDisable);
   };
 
-  const onInputTextChange = () => {
-    console.log('input change');
+  const onInputTextChange = ({ target }) => {
+    const { value } = target;
+    setFoodName(value);
   };
 
   return (
     <>
-      <div>
-        <Link to="/perfil">
-          <img src={ profileIcon } alt="profile icon" data-testid="search-top-btn" />
-        </Link>
-        <h1 data-testid="page-title">Comidas</h1>
-        <button type="button" onClick={ onSearchIconClick }>
-          <img src={ searchIcon } alt="search icon" data-testid="search-top-btn" />
-        </button>
-      </div>
+      <Link to="/perfil" data-testid="profile-top-btn" src={ profileIcon }>
+        <img src={ profileIcon } alt="profile icon" />
+      </Link>
+
+      <h1 data-testid="page-title">{ title }</h1>
+
+      {
+        !buttonDisable && (
+          <button type="button" data-testid="search-top-btn" onClick={ onSearchIconClick } src={ searchIcon } >
+            <img src={ searchIcon } alt="search icon" />
+          </button>
+        )
+      }
+
       {
         !inputDisable && (
           <label htmlFor="text">
-            <input type="text" value="" onChange={ onInputTextChange } name="text" />
+            <input
+              type="text"
+              value={ foodName }
+              onChange={ onInputTextChange }
+              name="text"
+              data-testid="search-input"
+            />
           </label>
         )
       }
     </>
   );
 }
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired,
+};
 
 export default Header;

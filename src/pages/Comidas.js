@@ -1,10 +1,11 @@
 import React from 'react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Comidas = () => (
   <>
-    <Header />
-    <p>só pro lint nao reclamar</p>
+    <Header title="Comidas" buttonDisable={ false } />
+    <Footer />
   </>
 );
 
