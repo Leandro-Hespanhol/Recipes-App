@@ -4,9 +4,12 @@ import PropTypes from 'prop-types';
 export const myContext = createContext();
 
 const Provider = ({ children }) => {
+  const [foodName, setFoodName] = useState('');
   const [type, setType] = useState('food');
 
   const value = {
+    foodName,
+    setFoodName,
     type,
     setType,
   };

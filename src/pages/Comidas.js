@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Header from '../components/Header';
 import Cards from '../components/Cards';
 import Footer from '../components/Footer';
 import { getFirstRecipes } from '../services/funcs';
@@ -17,6 +18,7 @@ const Comidas = () => {
 
   return (
     <div>
+      <Header title="Comidas" buttonDisable={ false } />
       <Cards info={ info } type="food" />
       <Footer />
     </div>
