@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const myContext = createContext();
 
 const Provider = ({ children }) => {
-  const [category, setCategory] = useState('all');
+  const [category, setCategory] = useState('All');
   const [recipes, setRecipes] = useState([]);
 
   const value = {
