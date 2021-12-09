@@ -33,7 +33,7 @@ const Comida = ({ match: { params: { id } } }) => {
         <p data-testid="recipe-category">{ strCategory }</p>
         <h2>Ingredientes</h2>
         <Ingredients item={ info[0] } />
-        <h2>Intruções</h2>
+        <h2>Instruções</h2>
         <p data-testid="instructions">{ strInstructions }</p>
         <h2>Video</h2>
         { !!strYoutube && <Video item={ info[0] } /> }
