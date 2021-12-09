@@ -6,12 +6,15 @@ export const myContext = createContext();
 const Provider = ({ children }) => {
   const [category, setCategory] = useState('All');
   const [recipes, setRecipes] = useState([]);
+  const [currentRecipe, setCurrentRecipe] = useState('');
 
   const value = {
     category,
     recipes,
+    currentRecipe,
     setCategory,
     setRecipes,
+    setCurrentRecipe,
   };
 
   return (
