@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
+import { myContext } from '../context/Provider';
 
 function Header({ title, buttonDisable, type }) {
   const [foodName, setFoodName] = useState('');
   const [inputDisable, setInputDisable] = useState(true);
+  const { searchEnable } = useContext(myContext);
 
   const onSearchIconClick = () => {
     setInputDisable(!inputDisable);
@@ -52,7 +54,7 @@ function Header({ title, buttonDisable, type }) {
           </label>
         )
       }
-      <SearchBar type={ type } foodName={ foodName } />
+      { searchEnable && <SearchBar type={ type } foodName={ foodName } />}
     </>
   );
 }
