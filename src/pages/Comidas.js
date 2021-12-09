@@ -12,10 +12,7 @@ const Comidas = () => {
     category,
     recipes,
     setRecipes,
-    setFoodOrDrink,
   } = useContext(myContext);
-
-  setFoodOrDrink('food');
 
   const getItens = async () => {
     const newRecipes = await getFirstRecipes('food');
@@ -41,8 +38,8 @@ const Comidas = () => {
 
   return (
     <div>
-      <Header title="Comidas" buttonDisable={ false } />
-      <Categories type="food" />
+      <Header type="food" title="Comidas" buttonDisable={ false } />
+      <Categories getItens={ getItens } type="food" />
       <Cards info={ recipes } type="food" />
       <Footer />
     </div>

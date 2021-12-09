@@ -77,3 +77,16 @@ export const getCategoriesItens = async (type, categories) => {
     .then(({ drinks }) => drinks);
   return recipes;
 };
+
+export const getItemById = async (type, id) => {
+  if (type === 'food') {
+    const ingredient = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+      .then((res) => res.json())
+      .then(({ meals }) => meals);
+    return ingredient;
+  }
+  const ingredient = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+    .then((res) => res.json())
+    .then(({ drinks }) => drinks);
+  return ingredient;
+};

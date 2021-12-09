@@ -1,22 +1,27 @@
 import React, { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import { myContext } from '../context/Provider';
 import { getByIngredients } from '../services/funcs';
 
-export default function SearchBar() {
-  const { foodName, setRecipes, foodOrDrink } = useContext(myContext);
-  const [mealType, setMealType] = useState('');
+export default function SearchBar({ foodName, type }) {
+  const ingredient = 'ingredient';
+  const name = 'name';
+  const firstLetter = 'first-letter';
+
+  const { setRecipes } = useContext(myContext);
+  const [mealType, setMealType] = useState('ingredient');
 
   const searchWithRadioButtons = async () => {
     let hold = [];
     switch (mealType) {
-    case 'ingredient-search':
-      hold = await getByIngredients(foodOrDrink, foodName);
+    case ingredient:
+      hold = await getByIngredients(type, foodName);
       break;
-    case 'name-search':
-      hold = await getByIngredients(foodOrDrink, foodName);
+    case name:
+      hold = await getByIngredients(type, foodName);
       break;
-    case 'first-letter-search':
-      hold = await getByIngredients(foodOrDrink, foodName);
+    case firstLetter:
+      hold = await getByIngredients(type, foodName);
       break;
     default:
       break;
@@ -36,7 +41,8 @@ export default function SearchBar() {
             type="radio"
             name="inf"
             id="ingredient-search"
-            onChange={ () => setMealType('ingredient-search') }
+            checked={ mealType === ingredient }
+            onChange={ () => setMealType(ingredient) }
             data-testid="ingredient-search-radio"
           />
           Ingredientes
@@ -46,7 +52,8 @@ export default function SearchBar() {
             type="radio"
             name="inf"
             id="name-search"
-            onChange={ () => setMealType('name-search') }
+            checked={ mealType === name }
+            onChange={ () => setMealType(name) }
             data-testid="name-search-radio"
           />
           Nome
@@ -56,7 +63,8 @@ export default function SearchBar() {
             type="radio"
             name="inf"
             id="first-letter-search"
-            onChange={ () => setMealType('first-letter-search') }
+            checked={ mealType === firstLetter }
+            onChange={ () => setMealType(firstLetter) }
             data-testid="first-letter-search-radio"
           />
           Primeira Letra
@@ -72,3 +80,8 @@ export default function SearchBar() {
     </div>
   );
 }
+
+SearchBar.propTypes = {
+  type: PropTypes.string.isRequired,
+  foodName: PropTypes.string.isRequired,
+};

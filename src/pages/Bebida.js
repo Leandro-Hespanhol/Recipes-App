@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { getItemById } from '../services/funcs';
 
 const Bebida = ({ match: { params: { id } } }) => {
-  console.log(id);
+  const [info, setInfo] = useState([]);
+
+  const getInfo = async () => {
+    const item = await getItemById('drinks', id);
+    console.log(item);
+  };
+
+  useEffect(() => {
+    getInfo();
+  }, []);
+
   return (
     <div>oi</div>
   );

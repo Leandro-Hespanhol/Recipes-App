@@ -1,13 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { myContext } from '../context/Provider';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 
-function Header({ title, buttonDisable }) {
-  const { foodName, setFoodName } = useContext(myContext);
+function Header({ title, buttonDisable, type }) {
+  const [foodName, setFoodName] = useState('');
   const [inputDisable, setInputDisable] = useState(true);
 
   const onSearchIconClick = () => {
@@ -53,7 +52,7 @@ function Header({ title, buttonDisable }) {
           </label>
         )
       }
-      <SearchBar />
+      <SearchBar type={ type } foodName={ foodName } />
     </>
   );
 }
@@ -61,6 +60,7 @@ function Header({ title, buttonDisable }) {
 Header.propTypes = {
   buttonDisable: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default Header;

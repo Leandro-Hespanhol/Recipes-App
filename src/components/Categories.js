@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { getCategories } from '../services/funcs';
 import { myContext } from '../context/Provider';
 
-const Categories = ({ type }) => {
+const Categories = ({ type, getItens }) => {
   const { category, setCategory } = useContext(myContext);
   const [info, setInfo] = useState([]);
 
@@ -44,7 +44,10 @@ const Categories = ({ type }) => {
       <button
         data-testid="All-category-filter"
         type="button"
-        onClick={ () => setCategory('All') }
+        onClick={ () => {
+          setCategory('All');
+          getItens();
+        } }
       >
         All
       </button>
@@ -57,4 +60,5 @@ export default Categories;
 
 Categories.propTypes = {
   type: PropTypes.string.isRequired,
+  getItens: PropTypes.func.isRequired,
 };
