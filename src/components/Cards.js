@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import '../css/Cards.css';
+import Card from './RecipeCard';
 
 const Cards = ({ info, type }) => {
   const maxItens = info.slice(0, +'12');
@@ -14,23 +15,10 @@ const Cards = ({ info, type }) => {
         strMeal,
       }, index) => (
         <Link
-          to={ `comidas/${idMeal}` }
+          to={ `/comidas/${idMeal}` }
           key={ idMeal }
         >
-          <div
-            data-testid={ `${index}-recipe-card` }
-          >
-            <img
-              data-testid={ `${index}-card-img` }
-              src={ strMealThumb }
-              alt={ strMealThumb }
-            />
-            <h2
-              data-testid={ `${index}-card-name` }
-            >
-              { strMeal }
-            </h2>
-          </div>
+          <Card index={ index } image={ strMealThumb } title={ strMeal } />
         </Link>
       ));
       return elements;
@@ -41,23 +29,10 @@ const Cards = ({ info, type }) => {
       strDrink,
     }, index) => (
       <Link
-        to={ `bebidas/${idDrink}` }
+        to={ `/bebidas/${idDrink}` }
         key={ idDrink }
       >
-        <div
-          data-testid={ `${index}-recipe-card` }
-        >
-          <img
-            data-testid={ `${index}-card-img` }
-            src={ strDrinkThumb }
-            alt={ strDrinkThumb }
-          />
-          <h2
-            data-testid={ `${index}-card-name` }
-          >
-            { strDrink }
-          </h2>
-        </div>
+        <Card index={ index } image={ strDrinkThumb } title={ strDrink } />
       </Link>
     ));
     return elements;

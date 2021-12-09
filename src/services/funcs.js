@@ -38,14 +38,26 @@ export const getByIngredients = async (type, ingredient) => {
   return ingredients;
 };
 
-export const getByName = async (name) => {
+export const getByName = async (type, name) => {
+  if (type === 'food') {
+    const ingredients = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`)
+      .then((res) => res.json())
+      .then(({ meals }) => meals);
+    return ingredients;
+  }
   const ingredients = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
     .then((res) => res.json())
     .then(({ drinks }) => drinks);
   return ingredients;
 };
 
-export const getByFirstLetter = async (letter) => {
+export const getByFirstLetter = async (type, letter) => {
+  if (type === 'food') {
+    const ingredients = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
+      .then((res) => res.json())
+      .then(({ meals }) => meals);
+    return ingredients;
+  }
   const ingredients = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`)
     .then((res) => res.json())
     .then(({ drinks }) => drinks);
@@ -89,4 +101,17 @@ export const getItemById = async (type, id) => {
     .then((res) => res.json())
     .then(({ drinks }) => drinks);
   return ingredient;
+};
+
+export const getRandomItens = async (type) => {
+  if (type === 'food') {
+    const ingredients = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+      .then((res) => res.json())
+      .then(({ meals }) => meals);
+    return ingredients.slice(0, +'6');
+  }
+  const ingredients = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
+    .then((res) => res.json())
+    .then(({ drinks }) => drinks);
+  return ingredients.slice(0, +'6');
 };
