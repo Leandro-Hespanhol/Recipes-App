@@ -5,6 +5,7 @@ import '../css/Cards.css';
 import Card from './RecipeCard';
 
 const Cards = ({ info, type }) => {
+  console.log('info', info);
   const maxItens = info.slice(0, +'12');
 
   const renderItens = () => {

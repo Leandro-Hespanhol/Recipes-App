@@ -13,6 +13,7 @@ const Comidas = () => {
     recipes,
     setRecipes,
   } = useContext(myContext);
+  // console.log('rec', recipes);
 
   const getItens = async () => {
     const newRecipes = await getFirstRecipes('food');
@@ -40,7 +41,9 @@ const Comidas = () => {
     <div>
       <Header type="food" title="Comidas" buttonDisable={ false } />
       <Categories getItens={ getItens } type="food" />
-      <Cards info={ recipes } type="food" />
+      { recipes
+        ? <Cards info={ recipes } type="food" />
+        : alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')}
       <Footer />
     </div>
   );

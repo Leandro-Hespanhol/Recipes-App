@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { myContext } from '../context/Provider';
-import { getByIngredients } from '../services/funcs';
+import { getByIngredients, getByName, getByFirstLetter } from '../services/funcs';
 
 export default function SearchBar({ foodName, type }) {
   const ingredient = 'ingredient';
@@ -18,10 +18,10 @@ export default function SearchBar({ foodName, type }) {
       hold = await getByIngredients(type, foodName);
       break;
     case name:
-      hold = await getByIngredients(type, foodName);
+      hold = await getByName(type, foodName);
       break;
     case firstLetter:
-      hold = await getByIngredients(type, foodName);
+      hold = await getByFirstLetter(type, foodName);
       break;
     default:
       break;

@@ -53,7 +53,8 @@ export const getByName = async (type, name) => {
 
 export const getByFirstLetter = async (type, letter) => {
   if (type === 'food') {
-    const ingredients = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`)
+    const ingredients = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${letter}`)
+
       .then((res) => res.json())
       .then(({ meals }) => meals);
     return ingredients;
