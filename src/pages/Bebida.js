@@ -1,3 +1,4 @@
+
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getItemById } from '../services/funcs';
@@ -10,6 +11,7 @@ import { myContext } from '../context/Provider';
 const Bebida = ({ match: { params: { id } } }) => {
   const [info, setInfo] = useState([]);
   const { currentRecipe } = useContext(myContext);
+
 
   const getInfo = async () => {
     const item = await getItemById('drinks', id);
