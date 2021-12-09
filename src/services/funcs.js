@@ -3,6 +3,14 @@ const addInitialTokens = () => {
   localStorage.setItem('cocktailsToken', '1');
 };
 
+const inProgressSetup = () => {
+  const inProgressRecipesState = {
+    cocktails: {},
+    meals: {},
+  };
+  localStorage.setItem('inProgressRecipes', JSON.stringify(inProgressRecipesState));
+};
+
 export const addEmail = (email) => {
   const strEmail = JSON.stringify({ email });
   localStorage.setItem('user', strEmail);
@@ -115,4 +123,48 @@ export const getRandomItens = async (type) => {
     .then((res) => res.json())
     .then(({ drinks }) => drinks);
   return ingredients.slice(0, +'6');
+};
+
+export const getInProgressRecipes = () => {
+  let inProgress = localStorage.getItem('inProgressRecipes');
+  if (!inProgress) {
+    inProgressSetup();
+    inProgress = localStorage.getItem('inProgressRecipes');
+  }
+  return JSON.parse(inProgress);
+};
+
+export const startRecipe = async (type, id) => {
+  const jsonProgress = localStorage.getItem('inProgressRecipes');
+  const progress = JSON.parse(jsonProgress);
+  const { meals, cocktails } = progress;
+  if (type === 'food') {
+    const recipe = await getItemById('food', id);
+    const entries = Object.entries(recipe[0]);
+    const ingredients = entries
+      .filter((arr) => /strIngredient/.test(arr[0]) && arr[1])
+      .map((arr) => arr[1]);
+    const newRecipe = {
+      ...progress,
+      meals: {
+        ...meals,
+        [id]: ingredients,
+      },
+    };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(newRecipe));
+  } else {
+    const recipe = await getItemById('drinks', id);
+    const entries = Object.entries(recipe);
+    const ingredients = entries
+      .filter((arr) => /strIngredient/.test(arr[0]) && arr[1])
+      .map((arr) => arr[1]);
+    const newRecipe = {
+      ...progress,
+      cocktails: {
+        ...cocktails,
+        [id]: ingredients,
+      },
+    };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(newRecipe));
+  }
 };
