@@ -15,6 +15,7 @@ import ExplorarComidasIngredientes from './pages/explorar/ExplorarComidasIngredi
 import ExplorarComidasArea from './pages/explorar/ExplorarComidasArea';
 import Comida from './pages/Comida';
 import Bebida from './pages/Bebida';
+import NotFound from './components/NotFound';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
             component={ ExplorarBebidasIngredientes }
           />
           <Route exact path="/explorar/comidas/area" component={ ExplorarComidasArea } />
+          <Route exact path="/explorar/bebidas/area" component={ NotFound } />
         </Switch>
       </BrowserRouter>
     </Provider>
