@@ -26,7 +26,7 @@ const Carousel = ({ type }) => {
         <Link
           onClick={ () => setCurrentRecipe(idDrink) }
           key={ `${strDrink} ${index}` }
-          to={ `/comidas/${idDrink}` }
+          to={ `/bebidas/${idDrink}` }
           data-testid={ `${index}-recomendation-card` }
         >
           <CarouselCard index={ index } image={ strDrinkThumb } title={ strDrink } />
@@ -42,7 +42,7 @@ const Carousel = ({ type }) => {
       <Link
         onClick={ () => setCurrentRecipe(idMeal) }
         key={ `${strMeal} ${index}` }
-        to={ `/bebidas/${idMeal}` }
+        to={ `/comidas/${idMeal}` }
         data-testid={ `${index}-recomendation-card` }
       >
         <CarouselCard index={ index } image={ strMealThumb } title={ strMeal } />
