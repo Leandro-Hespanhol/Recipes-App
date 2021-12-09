@@ -18,12 +18,16 @@ const Footer = () => (
         />
       </button>
     </Link>
-    <Link to="/explorar">
-      <img
-        src={ exploreIcon }
-        alt="toExplorePage"
-        data-testid="explore-bottom-btn"
-      />
+    <Link to="explorar">
+      <button
+        type="button"
+      >
+        <img
+          src={ exploreIcon }
+          alt="toExplorePage"
+          data-testid="explore-bottom-btn"
+        />
+      </button>
     </Link>
     <Link to="/comidas">
       <button
