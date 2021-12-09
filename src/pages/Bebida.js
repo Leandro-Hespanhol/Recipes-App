@@ -19,6 +19,7 @@ const Bebida = ({ match: { params: { id } } }) => {
 
   const renderItem = () => {
     const {
+      idDrink,
       strDrink,
       strDrinkThumb,
       strCategory,
@@ -36,10 +37,14 @@ const Bebida = ({ match: { params: { id } } }) => {
         <Ingredients item={ info[0] } />
         <h2>Instruções</h2>
         <p data-testid="instructions">{ strInstructions }</p>
-        <h2>Video</h2>
-        { !!strYoutube && <Video item={ info[0] } /> }
+        { !!strYoutube && (
+          <>
+            <h2>Video</h2>
+            <Video item={ info[0] } />
+          </>
+        ) }
         <h2>Compartilhar</h2>
-        <Buttons />
+        <Buttons type="drinks" id={ idDrink } />
         <h2>Recomendação</h2>
         <Carousel type="drinks" />
       </>

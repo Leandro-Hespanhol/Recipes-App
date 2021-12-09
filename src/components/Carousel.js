@@ -11,7 +11,6 @@ const Carousel = ({ type }) => {
 
   const getItens = async () => {
     const opositeType = type === 'food' ? 'drinks' : 'food';
-    console.log(opositeType);
     const itens = await getRandomItens(opositeType);
     setInfo(itens);
   };
