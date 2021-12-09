@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { myContext } from '../context/Provider';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import SearchBar from './SearchBar';
 
 function Header({ title, buttonDisable }) {
   const { foodName, setFoodName } = useContext(myContext);
@@ -52,6 +53,7 @@ function Header({ title, buttonDisable }) {
           </label>
         )
       }
+      <SearchBar />
     </>
   );
 }
