@@ -5,7 +5,25 @@
   width: 80vw;
 }
 
-.cards-container div {
+.cards-container img {
+  height: 80%;
+  width: 100%;
+}
+
+.buttons {
+  bottom: 0;
+  position: fixed;
+}
+
+.carrousel {
+  align-items: center;
+  display: flex;
+  height: 500px;
+  overflow: auto;
+  width: 100vw;
+}
+
+.carrousel div, .carrousel a {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -13,7 +31,15 @@
   width: 300px;
 }
 
-.cards-container img {
-  height: 80%;
+.carrousel div img {
   width: 100%;
+
+}
+
+.cards-container div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  width: 300px;
 }

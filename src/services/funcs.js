@@ -43,7 +43,6 @@ export const getByName = async (type, name) => {
     const ingredients = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`)
       .then((res) => res.json())
       .then(({ meals }) => meals);
-    console.log('ing', ingredients);
     return ingredients;
   }
   const ingredients = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
@@ -55,6 +54,7 @@ export const getByName = async (type, name) => {
 export const getByFirstLetter = async (type, letter) => {
   if (type === 'food') {
     const ingredients = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${letter}`)
+
       .then((res) => res.json())
       .then(({ meals }) => meals);
     return ingredients;
@@ -102,4 +102,17 @@ export const getItemById = async (type, id) => {
     .then((res) => res.json())
     .then(({ drinks }) => drinks);
   return ingredient;
+};
+
+export const getRandomItens = async (type) => {
+  if (type === 'food') {
+    const ingredients = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+      .then((res) => res.json())
+      .then(({ meals }) => meals);
+    return ingredients.slice(0, +'6');
+  }
+  const ingredients = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
+    .then((res) => res.json())
+    .then(({ drinks }) => drinks);
+  return ingredients.slice(0, +'6');
 };

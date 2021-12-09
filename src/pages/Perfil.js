@@ -6,11 +6,11 @@ import { getItemFromLocalStorage } from '../services/funcs';
 
 export default function Perfil() {
   const user = getItemFromLocalStorage('user');
-  console.log(user.email);
+  const headerContent = user === null ? '' : user.email;
   return (
     <div>
       <Header title="Perfil" buttonDisable />
-      <h3 data-testid="profile-email">{ user.email }</h3>
+      <h3 data-testid="profile-email">{ headerContent }</h3>
 
       <Link to="../receitas-feitas">
         <button
