@@ -38,14 +38,27 @@ export const getByIngredients = async (type, ingredient) => {
   return ingredients;
 };
 
-export const getByName = async (name) => {
+export const getByName = async (type, name) => {
+  if (type === 'food') {
+    const ingredients = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`)
+      .then((res) => res.json())
+      .then(({ meals }) => meals);
+    console.log('ing', ingredients);
+    return ingredients;
+  }
   const ingredients = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`)
     .then((res) => res.json())
     .then(({ drinks }) => drinks);
   return ingredients;
 };
 
-export const getByFirstLetter = async (letter) => {
+export const getByFirstLetter = async (type, letter) => {
+  if (type === 'food') {
+    const ingredients = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${letter}`)
+      .then((res) => res.json())
+      .then(({ meals }) => meals);
+    return ingredients;
+  }
   const ingredients = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`)
     .then((res) => res.json())
     .then(({ drinks }) => drinks);

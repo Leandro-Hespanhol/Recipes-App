@@ -40,7 +40,9 @@ export default function Bebidas() {
     <div>
       <Header type="drinks" title="Bebidas" buttonDisable={ false } />
       <Categories getItens={ getItens } type="drinks" />
-      <Cards info={ recipes } type="drinks" />
+      {recipes
+        ? <Cards info={ recipes } type="drinks" />
+        : alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')}
       <Footer />
     </div>
   );

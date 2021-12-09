@@ -6,6 +6,7 @@ import { getItemFromLocalStorage } from '../services/funcs';
 
 export default function Perfil() {
   const user = getItemFromLocalStorage('user');
+  console.log(user.email);
   return (
     <div>
       <Header title="Perfil" buttonDisable />
