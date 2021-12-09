@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { startRecipe, getInProgressRecipes } from '../services/funcs';
+import { getInProgressRecipes, startRecipe } from '../services/funcs';
 
-const Buttons = ({ type, id }) => {
+const StartRecipeButtons = ({ type, id }) => {
   const [inProgress, setInprogress] = useState(false);
   const [complete] = useState(false);
   const inProgressRecipes = getInProgressRecipes();
@@ -29,21 +29,7 @@ const Buttons = ({ type, id }) => {
   }, []);
 
   return (
-    <>
-      <div>
-        <button
-          data-testid="share-btn"
-          type="button"
-        >
-          Compartilhar
-        </button>
-        <button
-          data-testid="favorite-btn"
-          type="button"
-        >
-          Favoritar
-        </button>
-      </div>
+    <div>
       { !complete && (
         <Link to={ `/${type === 'food' ? 'comidas' : 'bebidas'}/${id}/in-progress` }>
           <button
@@ -59,13 +45,13 @@ const Buttons = ({ type, id }) => {
           </button>
         </Link>
       ) }
-    </>
+    </div>
   );
 };
 
-export default Buttons;
+export default StartRecipeButtons;
 
-Buttons.propTypes = {
+StartRecipeButtons.propTypes = {
   type: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { getItemById } from '../services/funcs';
 import Ingredients from '../components/Ingredients';
 import Video from '../components/Video';
-import Buttons from '../components/recipeButtons';
+import FavoriteAndShareButtons from '../components/FavoriteAndShareButtons';
+import StartRecipeButtons from '../components/StartRecipeButtons';
 import Carousel from '../components/Carousel';
 import { myContext } from '../context/Provider';
 
@@ -13,7 +14,6 @@ const Bebida = ({ match: { params: { id } } }) => {
 
   const getInfo = async () => {
     const item = await getItemById('drinks', id);
-    console.log(item);
     setInfo(item);
   };
 
@@ -29,8 +29,9 @@ const Bebida = ({ match: { params: { id } } }) => {
 
     return (
       <>
-        <h1 data-testid="recipe-title">{ strDrink }</h1>
         <img data-testid="recipe-photo" src={ strDrinkThumb } alt={ strDrink } />
+        <h1 data-testid="recipe-title">{ strDrink }</h1>
+        <FavoriteAndShareButtons />
         <h2>Categoria</h2>
         <p data-testid="recipe-category">{ `${strCategory}, Alcoholic` }</p>
         <h2>Ingredientes</h2>
@@ -44,7 +45,7 @@ const Bebida = ({ match: { params: { id } } }) => {
           </>
         ) }
         <h2>Compartilhar</h2>
-        <Buttons type="drinks" id={ idDrink } />
+        <StartRecipeButtons type="drink" id={ idDrink } />
         <h2>Recomendação</h2>
         <Carousel type="drinks" />
       </>
