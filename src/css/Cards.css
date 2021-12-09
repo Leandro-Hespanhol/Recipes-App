@@ -9,6 +9,11 @@
   width: 100%;
 }
 
+.buttons {
+  bottom: 0;
+  position: fixed;
+}
+
 .carrousel {
   align-items: center;
   display: flex;
