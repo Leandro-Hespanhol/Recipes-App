@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeart from '../images/whiteHeartIcon.svg';
 import blackHeart from '../images/blackHeartIcon.svg';
+import { addFavorite, removeFavorite, getFavoriteRecipes } from '../services/funcs';
 
 const FavoriteAndShareButtons = ({ type, id }) => {
   const [isCopy, setIsCopy] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+
+  const checkFavorite = () => {
+    const favorites = getFavoriteRecipes();
+    console.log(favorites);
+    if (favorites.some((item) => item.id === id)) {
+      setIsFavorite(true);
+    }
+  };
 
   const showMessage = () => {
     setIsCopy(true);
@@ -15,6 +24,10 @@ const FavoriteAndShareButtons = ({ type, id }) => {
       setIsCopy(false);
     }, +'5000');
   };
+
+  useEffect(() => {
+    checkFavorite();
+  }, []);
 
   return (
     <div>
@@ -30,10 +43,19 @@ const FavoriteAndShareButtons = ({ type, id }) => {
         <img src={ shareIcon } alt="imagem de compartilhar" />
       </button>
       <button
+        src={ isFavorite ? blackHeart : whiteHeart }
         data-testid="favorite-btn"
         type="button"
+        onClick={ () => {
+          setIsFavorite(!isFavorite);
+          if (isFavorite) {
+            removeFavorite(id);
+          } else {
+            addFavorite(type, id);
+          }
+        } }
       >
-        <img src={ whiteHeart } alt="imagem de favoritar" />
+        <img src={ isFavorite ? blackHeart : whiteHeart } alt="imagem de favoritar" />
       </button>
     </div>
   );
