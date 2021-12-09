@@ -12,10 +12,7 @@ export default function Bebidas() {
     category,
     recipes,
     setRecipes,
-    setFoodOrDrink,
   } = useContext(myContext);
-
-  setFoodOrDrink('drink');
 
   const getItens = async () => {
     const newRecipes = await getFirstRecipes('drinks');
@@ -41,8 +38,8 @@ export default function Bebidas() {
 
   return (
     <div>
-      <Header title="Bebidas" buttonDisable={ false } />
-      <Categories type="drinks" />
+      <Header type="drinks" title="Bebidas" buttonDisable={ false } />
+      <Categories getItens={ getItens } type="drinks" />
       <Cards info={ recipes } type="drinks" />
       <Footer />
     </div>
