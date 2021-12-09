@@ -1,6 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext } from 'react';
-import { Redirect } from 'react-router-dom';
 import Categories from '../components/Categories';
 import Header from '../components/Header';
 import Cards from '../components/Cards';
@@ -14,7 +12,6 @@ const Comidas = () => {
     recipes,
     setRecipes,
   } = useContext(myContext);
-  // console.log('rec', recipes);
 
   const getItens = async () => {
     const newRecipes = await getFirstRecipes('food');
@@ -37,11 +34,9 @@ const Comidas = () => {
   useEffect(() => {
     getNewRecipe();
   }, [category]);
-  console.log(recipes);
+
   return (
     <div>
-      {recipes
-      && (recipes.length === 1 && <Redirect to={ `/comidas/${recipes[0].idMeal}` } />)}
       <Header type="food" title="Comidas" buttonDisable={ false } />
       <Categories getItens={ getItens } type="food" />
       { recipes

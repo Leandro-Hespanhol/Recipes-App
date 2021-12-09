@@ -1,6 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext } from 'react';
-import { Redirect } from 'react-router-dom';
 import { getFirstRecipes, getCategoriesItens } from '../services/funcs';
 import Categories from '../components/Categories';
 import Header from '../components/Header';
@@ -38,11 +36,9 @@ export default function Bebidas() {
   }, [category]);
   return (
     <div>
-      {recipes
-      && recipes.length === 1 && <Redirect to={ `/bebidas/${recipes[0].idDrink}` } />}
       <Header type="drinks" title="Bebidas" buttonDisable={ false } />
       <Categories getItens={ getItens } type="drinks" />
-      {recipes
+      { recipes
         ? <Cards info={ recipes } type="drinks" />
         : alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')}
       <Footer />

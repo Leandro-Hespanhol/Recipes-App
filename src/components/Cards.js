@@ -6,6 +6,7 @@ import Card from './RecipeCard';
 
 const Cards = ({ info, type }) => {
   const maxItens = info.slice(0, +'12');
+  console.log(maxItens);
 
   const renderItens = () => {
     if (type === 'food') {
