@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { myContext } from '../context/Provider';
 import { getByIngredients, getByName, getByFirstLetter } from '../services/funcs';
 
@@ -8,8 +9,9 @@ export default function SearchBar({ foodName, type }) {
   const name = 'name';
   const firstLetter = 'first-letter';
 
-  const { setRecipes } = useContext(myContext);
+  const { recipes, setRecipes } = useContext(myContext);
   const [mealType, setMealType] = useState('ingredient');
+  const [buscou, setBuscou] = useState(false);
 
   const searchWithRadioButtons = async () => {
     let hold = [];
@@ -29,6 +31,19 @@ export default function SearchBar({ foodName, type }) {
     setRecipes(hold);
   };
 
+  const redirectToPage = () => {
+    if (recipes.length === 1) {
+      let url = '';
+      if (type === 'food') {
+        url = `/comidas/${recipes[0].idMeal}`;
+      } else {
+        url = `/bebidas/${recipes[0].idDrink}`;
+      }
+
+      return <Redirect to={ url } />;
+    }
+  };
+
   return (
     <div>
       <form
@@ -36,6 +51,7 @@ export default function SearchBar({ foodName, type }) {
           e.preventDefault()
         ) }
       >
+        { (buscou && recipes) && redirectToPage() }
         <label htmlFor="ingredient-search">
           <input
             type="radio"
@@ -72,9 +88,14 @@ export default function SearchBar({ foodName, type }) {
         <button
           type="submit"
           data-testid="exec-search-btn"
-          onClick={ () => (((mealType === firstLetter) && foodName.length > 1)
-            ? alert('Sua busca deve conter somente 1 (um) caracter')
-            : searchWithRadioButtons()) }
+          onClick={ () => {
+            setBuscou(true);
+            if ((mealType === firstLetter) && foodName.length > 1) {
+              alert('Sua busca deve conter somente 1 (um) caracter');
+            } else {
+              searchWithRadioButtons();
+            }
+          } }
         >
           Buscar
         </button>
