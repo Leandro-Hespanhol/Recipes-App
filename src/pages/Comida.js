@@ -19,12 +19,12 @@ const Comida = ({ match: { params: { id } } }) => {
 
   const renderItem = () => {
     const {
+      idMeal,
       strMeal,
       strMealThumb,
       strCategory,
       strInstructions,
       strYoutube,
-      idMeal,
     } = info[0];
 
     return (
@@ -41,7 +41,7 @@ const Comida = ({ match: { params: { id } } }) => {
         <h2>Video</h2>
         { !!strYoutube && <Video item={ info[0] } /> }
         <h2>Compartilhar</h2>
-        <StartRecipeButtons type="comidas" id={ idMeal } />
+        <StartRecipeButtons type="food" id={ idMeal } />
         <h2>Recomendação</h2>
         <Carousel type="food" />
       </>

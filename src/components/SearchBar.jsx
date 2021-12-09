@@ -72,7 +72,9 @@ export default function SearchBar({ foodName, type }) {
         <button
           type="submit"
           data-testid="exec-search-btn"
-          onClick={ () => searchWithRadioButtons() }
+          onClick={ () => (((mealType === firstLetter) && foodName.length > 1)
+            ? alert('Sua busca deve conter somente 1 (um) caracter')
+            : searchWithRadioButtons()) }
         >
           Buscar
         </button>

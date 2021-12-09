@@ -7,6 +7,7 @@ const Provider = ({ children }) => {
   const [category, setCategory] = useState('All');
   const [recipes, setRecipes] = useState([]);
   const [currentRecipe, setCurrentRecipe] = useState('');
+  const [searchEnable, setSearchEnable] = useState(true);
 
   const value = {
     category,
@@ -15,6 +16,8 @@ const Provider = ({ children }) => {
     setCategory,
     setRecipes,
     setCurrentRecipe,
+    searchEnable,
+    setSearchEnable,
   };
 
   return (
