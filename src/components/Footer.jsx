@@ -18,7 +18,7 @@ const Footer = () => (
         />
       </button>
     </Link>
-    <Link to="explorar">
+    <Link to="/explorar">
       <button
         type="button"
       >
