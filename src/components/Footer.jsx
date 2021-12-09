@@ -18,14 +18,14 @@ const Footer = () => (
         />
       </button>
     </Link>
-    <Link to="explorar">
+    <Link to="/explorar">
       <img
         src={ exploreIcon }
         alt="toExplorePage"
         data-testid="explore-bottom-btn"
       />
     </Link>
-    <Link to="comidas">
+    <Link to="/comidas">
       <button
         type="button"
       >
