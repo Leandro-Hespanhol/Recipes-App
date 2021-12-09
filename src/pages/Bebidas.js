@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext } from 'react';
 import { getFirstRecipes, getCategoriesItens } from '../services/funcs';
 import Categories from '../components/Categories';

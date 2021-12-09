@@ -29,7 +29,7 @@ const Footer = () => (
         />
       </button>
     </Link>
-    <Link to="comidas">
+    <Link to="/comidas">
       <button
         type="button"
       >
