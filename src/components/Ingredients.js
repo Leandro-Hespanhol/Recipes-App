@@ -13,7 +13,7 @@ const Ingredients = ({ item }) => {
       key={ `${arr[0]}, ${index}` }
       data-testid={ `${index}-ingredient-name-and-measure` }
     >
-      {`${arr[1]} ${measures[index][1]}`}
+      {`${arr[1]} ${measures[index] ? measures[index][1] : ''}`}
     </li>
   ));
 

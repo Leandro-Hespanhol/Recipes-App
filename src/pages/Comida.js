@@ -32,7 +32,6 @@ const Comida = ({ match: { params: { id } } }) => {
         <img data-testid="recipe-photo" src={ strMealThumb } alt={ strMeal } />
         <h1 data-testid="recipe-title">{ strMeal }</h1>
         <FavoriteAndShareButtons />
-        <h2>Categoria</h2>
         <p data-testid="recipe-category">{ strCategory }</p>
         <h2>Ingredientes</h2>
         <Ingredients item={ info[0] } />
