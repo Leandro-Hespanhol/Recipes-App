@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { concludeItem } from '../services/funcs';
-import restoreItem from '../services/funcs2';
+import { restoreItem } from '../services/funcs2';
 
 function Checkbox({
   testid,

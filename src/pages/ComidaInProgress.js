@@ -6,6 +6,7 @@ import { myContext } from '../context/Provider';
 import { getItemById } from '../services/funcs';
 import FavoriteAndShareButtons from '../components/FavoriteAndShareButtons';
 import IngredientsWithCheckbox from '../components/IngredientsWithCheckbox';
+import { doneRecipe } from '../services/funcs2';
 
 export default function ComidaInProgress({ match: { params: { id } } }) {
   const [numberChecked, setNumberChecked] = useState(0);
@@ -72,7 +73,14 @@ export default function ComidaInProgress({ match: { params: { id } } }) {
         <p data-testid="instructions">{ strInstructions }</p>
 
         <Link to="/receitas-feitas">
-          <button data-testid="finish-recipe-btn" type="button" disabled={ disabled }>
+          <button
+            data-testid="finish-recipe-btn"
+            type="button"
+            disabled={ disabled }
+            onClick={ () => {
+              doneRecipe(info[0], 'food');
+            } }
+          >
             Finalizar receita
           </button>
         </Link>
