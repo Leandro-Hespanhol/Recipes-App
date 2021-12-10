@@ -5,7 +5,7 @@ import Checkbox from './Checkbox';
 import { getInProgressRecipes, startRecipe } from '../services/funcs';
 
 const IngredientsWithCheckBox = ({ item, numberChecked, setNumberChecked, type, id }) => {
-  const [localItens, setLocalItens] = useState([]);
+  const [localItens, setLocalItens] = useState('');
   const entries = Object.entries(item);
 
   const findLocalItem = async () => {
@@ -63,7 +63,7 @@ const IngredientsWithCheckBox = ({ item, numberChecked, setNumberChecked, type, 
 
   return (
     <div className="checkboxes-ingredients-container">
-      { !!localItens.length && checkboxes }
+      { !!localItens && checkboxes }
     </div>
   );
 };
