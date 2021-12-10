@@ -54,7 +54,11 @@ function Header({ title, buttonDisable, type }) {
           </label>
         )
       }
-      { searchEnable && <SearchBar type={ type } foodName={ foodName } />}
+      { searchEnable && (
+        <SearchBar
+          type={ type }
+          foodName={ foodName }
+        />) }
     </>
   );
 }

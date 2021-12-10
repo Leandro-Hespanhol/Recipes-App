@@ -31,7 +31,7 @@ const Bebida = ({ match: { params: { id } } }) => {
       <>
         <img data-testid="recipe-photo" src={ strDrinkThumb } alt={ strDrink } />
         <h1 data-testid="recipe-title">{ strDrink }</h1>
-        <FavoriteAndShareButtons />
+        <FavoriteAndShareButtons type="bebidas" id={ idDrink } />
         <h2>Categoria</h2>
         <p data-testid="recipe-category">{ `${strCategory}, Alcoholic` }</p>
         <h2>Ingredientes</h2>
@@ -58,7 +58,7 @@ const Bebida = ({ match: { params: { id } } }) => {
 
   return (
     <div>
-      { !!info.length && renderItem() }
+      { info && !!info.length && renderItem() }
     </div>
   );
 };
