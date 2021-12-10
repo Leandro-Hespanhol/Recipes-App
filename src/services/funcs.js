@@ -124,7 +124,6 @@ export const getRandomItens = async (type) => {
     .then(({ drinks }) => drinks);
   return ingredients.slice(0, +'6');
 };
-
 export const getInProgressRecipes = () => {
   let inProgress = localStorage.getItem('inProgressRecipes');
   if (!inProgress) {
@@ -133,7 +132,36 @@ export const getInProgressRecipes = () => {
   }
   return JSON.parse(inProgress);
 };
-
+export const concludeItem = (type, id, name) => {
+  const local = getInProgressRecipes();
+  if (type === 'food') {
+    const { meals } = local;
+    const localEntries = Object.entries(meals);
+    const recipe = localEntries.find((arr) => arr[0] === id);
+    const newIngredients = recipe[1].filter((ingredient) => ingredient !== name);
+    const newRecipe = {
+      ...local,
+      meals: {
+        ...meals,
+        [id]: newIngredients,
+      },
+    };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(newRecipe));
+  } else {
+    const { cocktails } = local;
+    const localEntries = Object.entries(cocktails);
+    const recipe = localEntries.find((arr) => arr[0] === id);
+    const newIngredients = recipe[1].filter((ingredient) => ingredient !== name);
+    const newRecipe = {
+      ...local,
+      cocktails: {
+        ...cocktails,
+        [id]: newIngredients,
+      },
+    };
+    localStorage.setItem('inProgressRecipes', JSON.stringify(newRecipe));
+  }
+};
 export const startRecipe = async (type, id) => {
   const jsonProgress = localStorage.getItem('inProgressRecipes');
   const progress = JSON.parse(jsonProgress);
@@ -154,7 +182,7 @@ export const startRecipe = async (type, id) => {
     localStorage.setItem('inProgressRecipes', JSON.stringify(newRecipe));
   } else {
     const recipe = await getItemById('drinks', id);
-    const entries = Object.entries(recipe);
+    const entries = Object.entries(recipe[0]);
     const ingredients = entries
       .filter((arr) => /strIngredient/.test(arr[0]) && arr[1])
       .map((arr) => arr[1]);
@@ -167,8 +195,8 @@ export const startRecipe = async (type, id) => {
     };
     localStorage.setItem('inProgressRecipes', JSON.stringify(newRecipe));
   }
+  return true;
 };
-
 export const getFavoriteRecipes = () => {
   let favorites = localStorage.getItem('favoriteRecipes');
   if (!favorites) {

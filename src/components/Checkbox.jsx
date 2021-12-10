@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { concludeItem } from '../services/funcs';
+import restoreItem from '../services/funcs2';
 
-function Checkbox({ testid, inputValue, content, numberChecked, setNumberChecked }) {
-  const [checked, setChecked] = useState(false);
+function Checkbox({
+  testid,
+  inputValue,
+  content,
+  type,
+  id,
+  name,
+  numberChecked,
+  setNumberChecked,
+  isChecked }) {
+  const [checked, setChecked] = useState(isChecked);
 
-  const onCheck = ({ target }) => {
+  const onCheck = async ({ target }) => {
     setChecked(target.checked);
     if (target.checked) {
+      concludeItem(type, id, name);
       setNumberChecked(numberChecked + 1);
     } else {
       setNumberChecked(numberChecked - 1);
+      restoreItem(type, id, name);
     }
   };
 
@@ -33,10 +46,14 @@ function Checkbox({ testid, inputValue, content, numberChecked, setNumberChecked
 
 Checkbox.propTypes = {
   content: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   inputValue: PropTypes.number.isRequired,
   numberChecked: PropTypes.number.isRequired,
   setNumberChecked: PropTypes.func.isRequired,
   testid: PropTypes.string.isRequired,
+  isChecked: PropTypes.bool.isRequired,
 };
 
 export default Checkbox;

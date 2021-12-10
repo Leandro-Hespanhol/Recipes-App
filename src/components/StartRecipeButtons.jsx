@@ -38,8 +38,10 @@ const StartRecipeButtons = ({ type, id }) => {
             type="button"
             className="buttons"
             onClick={ () => {
+              if (!inProgress) {
+                startRecipe(type, id);
+              }
               setInprogress(true);
-              startRecipe(type, id);
             } }
           >
             { !inProgress ? 'Iniciar Receita' : 'Continuar Receita'}

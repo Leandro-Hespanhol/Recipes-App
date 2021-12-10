@@ -10,7 +10,7 @@ import IngredientsWithCheckbox from '../components/IngredientsWithCheckbox';
 export default function BebidaInProgress({ match: { params: { id } } }) {
   const [numberChecked, setNumberChecked] = useState(0);
   const [disabled, setDisabled] = useState(true);
-  const [info, setInfo] = useState([{}]);
+  const [info, setInfo] = useState([]);
   const { currentRecipe } = useContext(myContext);
 
   const getInfo = async () => {
@@ -18,21 +18,26 @@ export default function BebidaInProgress({ match: { params: { id } } }) {
     setInfo(item);
   };
 
-  useEffect(() => {
-    getInfo();
-  }, [currentRecipe]);
-
-  // Lógica para habilitar o botão
-  const entries = Object.entries(info[0]);
-  const ingredients = entries
-    .filter((arr) => /strIngredient/.test(arr[0]) && arr[1]);
-  const checkboxesLength = ingredients.length;
-
-  useEffect(() => {
+  const buttonChange = () => {
+    // Lógica para habilitar o botão
+    const entries = Object.entries(info[0]);
+    const ingredients = entries
+      .filter((arr) => /strIngredient/.test(arr[0]) && arr[1]);
+    const checkboxesLength = ingredients.length;
     if (checkboxesLength === numberChecked && checkboxesLength !== 0) {
       setDisabled(false);
     } else {
       setDisabled(true);
+    }
+  };
+
+  useEffect(() => {
+    getInfo();
+  }, [currentRecipe]);
+
+  useEffect(() => {
+    if (info.length) {
+      buttonChange();
     }
   }, [numberChecked]);
 
@@ -56,6 +61,8 @@ export default function BebidaInProgress({ match: { params: { id } } }) {
         <h2>Ingredientes</h2>
 
         <IngredientsWithCheckbox
+          id={ id }
+          type="drinks"
           item={ info[0] }
           numberChecked={ numberChecked }
           setNumberChecked={ setNumberChecked }
