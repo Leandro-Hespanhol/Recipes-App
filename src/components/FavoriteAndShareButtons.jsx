@@ -13,7 +13,6 @@ const FavoriteAndShareButtons = ({ type, id }) => {
 
   const checkFavorite = () => {
     const favorites = getFavoriteRecipes();
-    console.log(favorites);
     if (favorites.some((item) => item.id === id)) {
       setIsFavorite(true);
     }
