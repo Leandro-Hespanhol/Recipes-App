@@ -9,9 +9,8 @@ export default function Checkbox({ testid, inputValue, content }) {
   };
 
   return (
-    <label htmlFor={ inputValue } onChange={ onCheck }>
+    <label htmlFor={ inputValue } onChange={ onCheck } data-testid={ testid }>
       <input
-        data-testid={ testid }
         type="checkbox"
         id={ inputValue }
         name={ inputValue }
