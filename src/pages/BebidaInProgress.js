@@ -38,6 +38,7 @@ export default function BebidaInProgress({ match: { params: { id } } }) {
 
   const renderItem = () => {
     const {
+      idDrink,
       strDrink,
       strDrinkThumb,
       strCategory,
@@ -49,7 +50,7 @@ export default function BebidaInProgress({ match: { params: { id } } }) {
         <img data-testid="recipe-photo" src={ strDrinkThumb } alt={ strDrink } />
         <h1 data-testid="recipe-title">{ strDrink }</h1>
 
-        <FavoriteAndShareButtons />
+        <FavoriteAndShareButtons type="bebidas" id={ idDrink } />
 
         <p data-testid="recipe-category">{ strCategory }</p>
         <h2>Ingredientes</h2>

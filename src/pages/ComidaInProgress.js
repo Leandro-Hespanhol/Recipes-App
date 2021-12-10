@@ -38,6 +38,7 @@ export default function ComidaInProgress({ match: { params: { id } } }) {
 
   const renderItem = () => {
     const {
+      idMeal,
       strMeal,
       strMealThumb,
       strCategory,
@@ -49,7 +50,7 @@ export default function ComidaInProgress({ match: { params: { id } } }) {
         <img data-testid="recipe-photo" src={ strMealThumb } alt={ strMeal } />
         <h1 data-testid="recipe-title">{ strMeal }</h1>
 
-        <FavoriteAndShareButtons />
+        <FavoriteAndShareButtons type="comidas" id={ idMeal } />
 
         <p data-testid="recipe-category">{ strCategory }</p>
         <h2>Ingredientes</h2>
