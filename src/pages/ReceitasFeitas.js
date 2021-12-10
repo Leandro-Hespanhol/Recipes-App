@@ -24,7 +24,6 @@ export default function ReceitasFeitas() {
 
   const renderItens = () => (
     <>
-      <Header title="Receitas Feitas" buttonDisable />
       <button
         data-testid="filter-by-all-btn"
         type="button"
@@ -62,6 +61,7 @@ export default function ReceitasFeitas() {
 
   return (
     <div>
+      <Header title="Receitas Feitas" buttonDisable />
       { !!info.length && renderItens() }
     </div>
   );
