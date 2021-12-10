@@ -168,3 +168,54 @@ export const startRecipe = async (type, id) => {
     localStorage.setItem('inProgressRecipes', JSON.stringify(newRecipe));
   }
 };
+
+export const getFavoriteRecipes = () => {
+  let favorites = localStorage.getItem('favoriteRecipes');
+  if (!favorites) {
+    localStorage.setItem('favoriteRecipes', '[]');
+    favorites = '[]';
+  }
+  return JSON.parse(favorites);
+};
+
+export const removeFavorite = (id) => {
+  const favorites = getFavoriteRecipes();
+  const newFavorites = favorites.filter((item) => item.id !== id);
+  localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
+};
+
+export const addFavorite = async (type, id) => {
+  const favorites = getFavoriteRecipes();
+  const item = await getItemById(type === 'comidas' ? 'food' : 'drinks', id);
+
+  let name = '';
+  let image = '';
+
+  if (type === 'comidas') {
+    const { strMeal, strMealThumb } = item[0];
+    name = strMeal;
+    image = strMealThumb;
+  } else {
+    const { strDrink, strDrinkThumb } = item[0];
+    name = strDrink;
+    image = strDrinkThumb;
+  }
+
+  const {
+    strArea,
+    strCategory,
+  } = item[0];
+
+  const obj = {
+    id,
+    type: type === 'comidas' ? 'comida' : 'bebida',
+    area: strArea ? `${strArea}` : '',
+    category: strCategory,
+    alcoholicOrNot: type === 'comidas' ? '' : 'Alcoholic',
+    name,
+    image,
+  };
+
+  const newFavorite = [...favorites, obj];
+  localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorite));
+};
