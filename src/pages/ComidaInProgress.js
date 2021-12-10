@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import FavoriteAndShareButtons from '../components/FavoriteAndShareButtons';
 import IngredientsWithCheckbox from '../components/IngredientsWithCheckbox';
@@ -6,7 +7,9 @@ import { getItemById } from '../services/funcs';
 import { myContext } from '../context/Provider';
 
 export default function ComidaInProgress({ match: { params: { id } } }) {
-  const [info, setInfo] = useState([]);
+  const [numberChecked, setNumberChecked] = useState(0);
+  const [disabledButton, setDisabledButton] = useState(true);
+  const [info, setInfo] = useState([{}]);
   const { currentRecipe } = useContext(myContext);
 
   const getInfo = async () => {
@@ -18,6 +21,20 @@ export default function ComidaInProgress({ match: { params: { id } } }) {
     getInfo();
   }, [currentRecipe]);
 
+  // Lógica para habilitar o botão
+  const entries = Object.entries(info[0]);
+  const ingredients = entries
+    .filter((arr) => /strIngredient/.test(arr[0]) && arr[1]);
+  const checkboxesLength = ingredients.length;
+
+  useEffect(() => {
+    if (checkboxesLength === numberChecked && checkboxesLength !== 0) {
+      setDisabledButton(false);
+    } else {
+      setDisabledButton(true);
+    }
+  }, [numberChecked]);
+
   const renderItem = () => {
     const {
       strMeal,
@@ -28,15 +45,51 @@ export default function ComidaInProgress({ match: { params: { id } } }) {
 
     return (
       <>
-        <img data-testid="recipe-photo" src={ strMealThumb } alt={ strMeal } />
-        <h1 data-testid="recipe-title">{ strMeal }</h1>
+        <img
+          data-testid="recipe-photo"
+          src={ strMealThumb }
+          alt={ strMeal }
+        />
+
+        <h1
+          data-testid="recipe-title"
+        >
+          { strMeal }
+        </h1>
+
         <FavoriteAndShareButtons />
-        <p data-testid="recipe-category">{ strCategory }</p>
+
+        <p
+          data-testid="recipe-category"
+        >
+          { strCategory }
+        </p>
+
         <h2>Ingredientes</h2>
-        <IngredientsWithCheckbox item={ info[0] } />
+
+        <IngredientsWithCheckbox
+          item={ info[0] }
+          numberChecked={ numberChecked }
+          setNumberChecked={ setNumberChecked }
+        />
+
         <h2>Instruções</h2>
-        <p data-testid="instructions">{ strInstructions }</p>
-        <button data-testid="finish-recipe-btn" type="button">Finalizar receita</button>
+
+        <p
+          data-testid="instructions"
+        >
+          { strInstructions }
+        </p>
+
+        <Link to="/receitas-feitas">
+          <button
+            data-testid="finish-recipe-btn"
+            type="button"
+            disabled={ disabledButton }
+          >
+            Finalizar receita
+          </button>
+        </Link>
       </>
     );
   };

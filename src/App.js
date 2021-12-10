@@ -24,18 +24,66 @@ function App() {
     <Provider>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={ Login } />
-          <Route exact path="/comidas" component={ Comidas } />
-          <Route exact path="/comidas/:id" component={ Comida } />
-          <Route exact path="/comidas/:id/in-progress" component={ ComidaInProgress } />
-          <Route exact path="/bebidas/:id" component={ Bebida } />
-          <Route exact path="/bebidas/:id/in-progress" component={ BebidaInProgress } />
-          <Route exact path="/bebidas" component={ Bebidas } />
-          <Route exact path="/perfil" component={ Perfil } />
-          <Route exact path="/receitas-feitas" component={ ReceitasFeitas } />
-          <Route exact path="/receitas-favoritas" component={ ReceitasFavoritas } />
-          <Route exact path="/explorar" component={ Explorar } />
-          <Route exact path="/explorar/comidas" component={ ExplorarComidas } />
+          <Route
+            exact
+            path="/"
+            component={ Login }
+          />
+          <Route
+            exact
+            path="/comidas"
+            component={ Comidas }
+          />
+          <Route
+            exact
+            path="/comidas/:id"
+            component={ Comida }
+          />
+          <Route
+            exact
+            path="/comidas/:id/in-progress"
+            component={ ComidaInProgress }
+          />
+          <Route
+            exact
+            path="/bebidas/:id"
+            component={ Bebida }
+          />
+          <Route
+            exact
+            path="/bebidas/:id/in-progress"
+            component={ BebidaInProgress }
+          />
+          <Route
+            exact
+            path="/bebidas"
+            component={ Bebidas }
+          />
+          <Route
+            exact
+            path="/perfil"
+            component={ Perfil }
+          />
+          <Route
+            exact
+            path="/receitas-feitas"
+            component={ ReceitasFeitas }
+          />
+          <Route
+            exact
+            path="/receitas-favoritas"
+            component={ ReceitasFavoritas }
+          />
+          <Route
+            exact
+            path="/explorar"
+            component={ Explorar }
+          />
+          <Route
+            exact
+            path="/explorar/comidas"
+            component={ ExplorarComidas }
+          />
           <Route
             exact
             path="/explorar/bebidas"
@@ -51,8 +99,16 @@ function App() {
             path="/explorar/bebidas/ingredientes"
             component={ ExplorarBebidasIngredientes }
           />
-          <Route exact path="/explorar/comidas/area" component={ ExplorarComidasArea } />
-          <Route exact path="/explorar/bebidas/area" component={ NotFound } />
+          <Route
+            exact
+            path="/explorar/comidas/area"
+            component={ ExplorarComidasArea }
+          />
+          <Route
+            exact
+            path="/explorar/bebidas/area"
+            component={ NotFound }
+          />
         </Switch>
       </BrowserRouter>
     </Provider>

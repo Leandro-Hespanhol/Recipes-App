@@ -13,10 +13,10 @@ const Provider = ({ children }) => {
     category,
     recipes,
     currentRecipe,
+    searchEnable,
     setCategory,
     setRecipes,
     setCurrentRecipe,
-    searchEnable,
     setSearchEnable,
   };
 
