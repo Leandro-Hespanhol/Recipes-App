@@ -28,5 +28,5 @@ const Video = ({ item }) => {
 export default Video;
 
 Video.propTypes = {
-  item: PropTypes.objectOf(PropTypes.element).isRequired,
+  item: PropTypes.objectOf(PropTypes.string).isRequired,
 };

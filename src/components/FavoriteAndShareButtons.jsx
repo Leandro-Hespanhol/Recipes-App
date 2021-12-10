@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
@@ -12,7 +13,6 @@ const FavoriteAndShareButtons = ({ type, id }) => {
 
   const checkFavorite = () => {
     const favorites = getFavoriteRecipes();
-    console.log(favorites);
     if (favorites.some((item) => item.id === id)) {
       setIsFavorite(true);
     }
