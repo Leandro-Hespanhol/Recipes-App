@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { myContext } from '../context/Provider';
+import { getItemById } from '../services/funcs';
 import FavoriteAndShareButtons from '../components/FavoriteAndShareButtons';
 import IngredientsWithCheckbox from '../components/IngredientsWithCheckbox';
-import { getItemById } from '../services/funcs';
-import { myContext } from '../context/Provider';
 
 export default function BebidaInProgress({ match: { params: { id } } }) {
   const [numberChecked, setNumberChecked] = useState(0);
-  const [disabledButton, setDisabledButton] = useState(true);
+  const [disabled, setDisabled] = useState(true);
   const [info, setInfo] = useState([{}]);
   const { currentRecipe } = useContext(myContext);
 
@@ -29,9 +29,9 @@ export default function BebidaInProgress({ match: { params: { id } } }) {
 
   useEffect(() => {
     if (checkboxesLength === numberChecked && checkboxesLength !== 0) {
-      setDisabledButton(false);
+      setDisabled(false);
     } else {
-      setDisabledButton(true);
+      setDisabled(true);
     }
   }, [numberChecked]);
 
@@ -45,26 +45,12 @@ export default function BebidaInProgress({ match: { params: { id } } }) {
 
     return (
       <>
-        <img
-          data-testid="recipe-photo"
-          src={ strDrinkThumb }
-          alt={ strDrink }
-        />
-
-        <h1
-          data-testid="recipe-title"
-        >
-          { strDrink }
-        </h1>
+        <img data-testid="recipe-photo" src={ strDrinkThumb } alt={ strDrink } />
+        <h1 data-testid="recipe-title">{ strDrink }</h1>
 
         <FavoriteAndShareButtons />
 
-        <p
-          data-testid="recipe-category"
-        >
-          { strCategory }
-        </p>
-
+        <p data-testid="recipe-category">{ strCategory }</p>
         <h2>Ingredientes</h2>
 
         <IngredientsWithCheckbox
@@ -74,19 +60,10 @@ export default function BebidaInProgress({ match: { params: { id } } }) {
         />
 
         <h2>Instruções</h2>
-
-        <p
-          data-testid="instructions"
-        >
-          { strInstructions }
-        </p>
+        <p data-testid="instructions">{ strInstructions }</p>
 
         <Link to="/receitas-feitas">
-          <button
-            data-testid="finish-recipe-btn"
-            type="button"
-            disabled={ disabledButton }
-          >
+          <button data-testid="finish-recipe-btn" type="button" disabled={ disabled }>
             Finalizar receita
           </button>
         </Link>
