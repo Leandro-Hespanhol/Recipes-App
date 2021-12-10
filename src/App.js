@@ -15,7 +15,7 @@ import ExplorarComidasIngredientes from './pages/explorar/ExplorarComidasIngredi
 import ExplorarComidasArea from './pages/explorar/ExplorarComidasArea';
 import Comida from './pages/Comida';
 import Bebida from './pages/Bebida';
-import NotFound from './components/NotFound';
+import NotFound from './pages/NotFound';
 import BebidaInProgress from './pages/BebidaInProgress';
 import ComidaInProgress from './pages/ComidaInProgress';
 
