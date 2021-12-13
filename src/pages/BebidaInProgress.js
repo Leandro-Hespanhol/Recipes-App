@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { myContext } from '../context/Provider';
 import { getItemById } from '../services/funcs';
+import { doneRecipe } from '../services/funcs2';
 import FavoriteAndShareButtons from '../components/FavoriteAndShareButtons';
 import IngredientsWithCheckbox from '../components/IngredientsWithCheckbox';
 
@@ -72,7 +73,14 @@ export default function BebidaInProgress({ match: { params: { id } } }) {
         <p data-testid="instructions">{ strInstructions }</p>
 
         <Link to="/receitas-feitas">
-          <button data-testid="finish-recipe-btn" type="button" disabled={ disabled }>
+          <button
+            data-testid="finish-recipe-btn"
+            type="button"
+            disabled={ disabled }
+            onClick={ () => {
+              doneRecipe(info[0], 'drinks');
+            } }
+          >
             Finalizar receita
           </button>
         </Link>
