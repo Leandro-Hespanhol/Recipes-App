@@ -114,3 +114,17 @@ export const doneRecipe = (info, type) => {
   const newDoneRecipe = [...local, newRecipe];
   localStorage.setItem('doneRecipes', JSON.stringify(newDoneRecipe));
 };
+
+export const getListIngredients = async (type) => {
+  let ingredients = [];
+  if (type === 'food') {
+    ingredients = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
+      .then((res) => res.json())
+      .then(({ meals }) => meals);
+  } else {
+    ingredients = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list')
+      .then((res) => res.json())
+      .then(({ drinks }) => drinks);
+  }
+  return ingredients.slice(0, +'12');
+};

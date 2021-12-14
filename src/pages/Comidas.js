@@ -11,21 +11,25 @@ const Comidas = () => {
   const {
     category,
     recipes,
+    filter,
     setRecipes,
   } = useContext(myContext);
 
   const getItens = async () => {
     const newRecipes = await getFirstRecipes('food');
-    setRecipes(newRecipes);
+    if (!filter) {
+      setRecipes(newRecipes);
+    }
   };
 
   const getNewRecipe = async () => {
-    if (category === 'All') {
-      getItens();
-      return;
+    if (category === 'All' && !filter) {
+      const newRecipes = await getFirstRecipes('food');
+      setRecipes(newRecipes);
+    } else if (!filter) {
+      const newRecipes = await getCategoriesItens('food', category);
+      setRecipes(newRecipes);
     }
-    const newRecipes = await getCategoriesItens('food', category);
-    setRecipes(newRecipes);
   };
 
   useEffect(() => {
@@ -39,10 +43,8 @@ const Comidas = () => {
   return (
     <div>
       <Header type="food" title="Comidas" buttonDisable={ false } />
-      <Categories getItens={ getItens } type="food" />
-      { recipes
-        ? <Cards info={ recipes } type="food" />
-        : alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')}
+      <Categories type="food" />
+      { recipes && <Cards info={ recipes } type="food" /> }
       <Footer />
     </div>
   );

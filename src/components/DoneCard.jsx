@@ -17,7 +17,7 @@ const DoneCard = ({
   doneDate,
   area,
   index,
-  tags = [],
+  tags = '',
   alcoholicOrNot,
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -53,7 +53,7 @@ const DoneCard = ({
   let newArray = [];
   if (typeof tags === 'string') {
     newArray.push(tags);
-  } else {
+  } else if (tags) {
     newArray = [...tags];
   }
 
