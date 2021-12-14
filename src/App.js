@@ -91,7 +91,7 @@ function App() {
           <Route
             exact
             path="/explorar/comidas/ingredientes"
-            component={ ExplorarIngredientes }
+            render={ (props) => <ExplorarIngredientes { ...props } /> }
           />
           <Route
             exact
@@ -103,11 +103,7 @@ function App() {
             path="/explorar/comidas/area"
             component={ ExplorarComidasArea }
           />
-          <Route
-            exact
-            path="/explorar/bebidas/area"
-            component={ NotFound }
-          />
+          <Route component={ NotFound } />
         </Switch>
       </BrowserRouter>
     </Provider>
