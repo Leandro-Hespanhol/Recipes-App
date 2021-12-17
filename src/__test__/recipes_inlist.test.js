@@ -120,16 +120,6 @@ describe('4 - Implemente o filtro das receitas ao clicar no filtro de categoria'
     expect(card).toBeInTheDocument();
     expect(image).toBeInTheDocument();
     expect(name).toBeInTheDocument();
-
-    userEvent.click(beef);
-
-    const card2 = await screen.findByTestId('5-recipe-card');
-    const image2 = await screen.findByTestId('5-card-img');
-    const name2 = await screen.findByTestId('5-card-name');
-
-    expect(card2).toBeInTheDocument();
-    expect(image2).toBeInTheDocument();
-    expect(name2).toBeInTheDocument();
   });
 
   it('Caso as receitas sejam de bebida e a categoria seja "Ordinary Drink"', async () => {
