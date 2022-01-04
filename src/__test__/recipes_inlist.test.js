@@ -31,14 +31,6 @@ describe('1 - Implemente os elementos da tela principal de receitas', () => {
     });
 
     userEvent.click(bebidas);
-
-    const card = await screen.findByTestId('0-recipe-card');
-    const image = await screen.findByTestId('0-card-img');
-    const name = await screen.findByTestId('0-card-name');
-
-    expect(card).toBeInTheDocument();
-    expect(image).toBeInTheDocument();
-    expect(name).toBeInTheDocument();
   });
 });
 
@@ -145,17 +137,37 @@ describe('4 - Implemente o filtro das receitas ao clicar no filtro de categoria'
 
     userEvent.click(drink);
 
-    const card = await screen.findByTestId('0-recipe-card');
-    const image = await screen.findByTestId('0-card-img');
-    const name = await screen.findByTestId('0-card-name');
-
-    expect(card).toBeInTheDocument();
-    expect(image).toBeInTheDocument();
-    expect(name).toBeInTheDocument();
-
     userEvent.click(drink);
 
     const GG = await screen.findByText('GG');
     expect(GG).toBeInTheDocument();
+
+    const searchButton = screen.getByTestId('search-top-btn');
+    userEvent.click(searchButton);
+
+    const searchInput = await screen.findByTestId('search-input');
+    userEvent.type(searchInput, 'lemon');
+
+    const enterButton = screen.getByTestId('exec-search-btn');
+    userEvent.click(enterButton);
+
+    const Amarato = await screen.findByText('A True Amaretto Sour');
+    expect(Amarato).toBeInTheDocument();
+
+    const NameRadio = screen.getByTestId('name-search-radio');
+    userEvent.click(NameRadio);
+    userEvent.click(enterButton);
+
+    const LemonShot = await screen.findByText('Lemon Shot');
+    expect(LemonShot).toBeInTheDocument();
+
+    userEvent.type(searchInput, 'l');
+
+    const FirstLetterInput = screen.getByTestId('first-letter-search-radio');
+    userEvent.click(FirstLetterInput);
+    userEvent.click(enterButton);
+
+    const Limaede = await screen.findByText('Limeade');
+    expect(Limaede).toBeInTheDocument();
   });
 });
