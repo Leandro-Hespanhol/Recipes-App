@@ -7,14 +7,14 @@ export default function Explorar() {
   return (
     <div>
       <Header title="Explorar" buttonDisable />
-      <body>
+      <div>
         <Link to="../explorar/comidas">
           <button type="button" data-testid="explore-food">Explorar Comidas</button>
         </Link>
         <Link to="../explorar/bebidas">
           <button type="button" data-testid="explore-drinks">Explorar Bebidas</button>
         </Link>
-      </body>
+      </div>
       <Footer />
     </div>
   );

@@ -28,7 +28,12 @@ export default function SearchBar({ foodName, type }) {
     default:
       break;
     }
-    setRecipes(hold);
+
+    if (!hold) {
+      alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+    } else {
+      setRecipes(hold);
+    }
   };
 
   const redirectToPage = () => {

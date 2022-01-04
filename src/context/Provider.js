@@ -5,6 +5,7 @@ export const myContext = createContext();
 
 const Provider = ({ children }) => {
   const [category, setCategory] = useState('All');
+  const [filter, setFilter] = useState('');
   const [recipes, setRecipes] = useState([]);
   const [currentRecipe, setCurrentRecipe] = useState('');
   const [searchEnable, setSearchEnable] = useState(true);
@@ -14,6 +15,8 @@ const Provider = ({ children }) => {
     recipes,
     currentRecipe,
     searchEnable,
+    filter,
+    setFilter,
     setCategory,
     setRecipes,
     setCurrentRecipe,

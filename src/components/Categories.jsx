@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { getCategories } from '../services/funcs';
+import { getCategories, getFirstRecipes } from '../services/funcs';
 import { myContext } from '../context/Provider';
 
-const Categories = ({ type, getItens }) => {
-  const { category, setCategory } = useContext(myContext);
+const Categories = ({ type }) => {
+  const { category, setCategory, setFilter, setRecipes } = useContext(myContext);
   const [info, setInfo] = useState([]);
 
   const getInfo = async () => {
@@ -14,6 +14,7 @@ const Categories = ({ type, getItens }) => {
   };
 
   const changeCategory = async (newCategory) => {
+    setFilter('');
     if (category !== newCategory) {
       setCategory(newCategory);
     } else {
@@ -44,9 +45,11 @@ const Categories = ({ type, getItens }) => {
       <button
         data-testid="All-category-filter"
         type="button"
-        onClick={ () => {
+        onClick={ async () => {
+          setFilter('');
           setCategory('All');
-          getItens();
+          const newRecipes = await getFirstRecipes(type === 'food' ? 'food' : 'drinks');
+          setRecipes(newRecipes);
         } }
       >
         All
@@ -60,5 +63,4 @@ export default Categories;
 
 Categories.propTypes = {
   type: PropTypes.string.isRequired,
-  getItens: PropTypes.func.isRequired,
 };
