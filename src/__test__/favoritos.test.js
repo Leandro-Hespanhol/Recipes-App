@@ -7,6 +7,30 @@ import renderWithRouter from './renderWithRouter';
 describe('teste da comida detalhada', () => {
   it('setup', async () => {
     renderWithRouter(<App />);
+
+    const favoriteRecipes = [
+      {
+        id: '52771',
+        type: 'comida',
+        area: 'Italian',
+        category: 'Vegetarian',
+        alcoholicOrNot: '',
+        name: 'Spicy Arrabiata Penne',
+        image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
+      },
+      {
+        id: '178319',
+        type: 'bebida',
+        area: '',
+        category: 'Cocktail',
+        alcoholicOrNot: 'Alcoholic',
+        name: 'Aquamarine',
+        image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
+      },
+    ];
+
+    localStorage.setItem('favoriteRecipes', JSON.stringify(favoriteRecipes));
+
     const email = screen.getByTestId('email-input');
     const password = screen.getByTestId('password-input');
     userEvent.type(email, 'p@p.com');
@@ -24,6 +48,14 @@ describe('teste da comida detalhada', () => {
 
   it('testando os botões', async () => {
     renderWithRouter(<App />);
+
+    const firstFavorite = await screen.findByText('Spicy Arrabiata Penne');
+    expect(firstFavorite).toBeDefined();
+
+    const remover = screen.getByTestId('0-horizontal-favorite-btn');
+    userEvent.click(remover);
+
+    expect(firstFavorite).not.toBeInTheDocument();
 
     const all = await screen.findByTestId('filter-by-all-btn');
     const food = screen.getByTestId('filter-by-food-btn');

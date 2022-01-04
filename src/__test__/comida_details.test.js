@@ -42,6 +42,33 @@ describe('teste da comida detalhada', () => {
 
     userEvent.click(fav);
 
-    userEvent.click(fav);
+    const blackHeart = await screen.findByRole('img', {
+      name: /imagem de favoritar/i,
+    });
+    expect(blackHeart).toBeDefined();
+    expect(blackHeart.src).toBe('http://localhost/comidas/blackHeartIcon.svg');
+  });
+
+  it('testa recipe cards', async () => {
+    renderWithRouter(<App />);
+
+    const title = await screen.findByText('GG');
+    expect(title).toBeDefined();
+
+    for (let c = 0; c < +'5'; c += 1) {
+      const recipeCard = screen.getByTestId(`${c}-recipe-card`);
+      expect(recipeCard).toBeDefined();
+    }
+
+    const firstRecipe = screen.getByTestId('0-recipe-card');
+    userEvent.click(firstRecipe);
+
+    const GG = await screen.findByText('GG');
+    expect(GG).toBeDefined();
+
+    const corba = await screen.findByText('Corba');
+    expect(corba).toBeDefined();
+
+    userEvent.click(corba);
   });
 });

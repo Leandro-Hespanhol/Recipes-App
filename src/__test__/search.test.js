@@ -38,5 +38,8 @@ describe('teste da search bar', () => {
     const radioFirstLetter = screen.getByTestId('first-letter-search-radio');
     userEvent.click(radioFirstLetter);
     userEvent.click(enterButton);
+
+    userEvent.type(input, 'beef');
+    userEvent.click(enterButton);
   });
 });

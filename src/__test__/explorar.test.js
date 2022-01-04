@@ -81,7 +81,12 @@ describe('testa pagina de explorar', () => {
     userEvent.click(byArea);
 
     const select = await screen.findByTestId('explore-by-area-dropdown');
-    userEvent.selectOptions(select, ['American']);
+    userEvent.selectOptions(select, 'American');
+
+    const pankakes = await screen.findByRole('heading', {
+      name: /banana pancakes/i,
+    });
+    expect(pankakes).toBeDefined();
   });
 
   it('explorar Bebidas', async () => {

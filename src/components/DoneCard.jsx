@@ -37,6 +37,7 @@ const DoneCard = ({
   const removeItem = () => {
     const newInfo = info.filter((item) => item.id !== id);
     removeFavorite(id);
+    setIsFavorite(false);
     if (setInfo) {
       setInfo(newInfo);
     }

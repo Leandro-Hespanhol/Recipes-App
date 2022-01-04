@@ -5,7 +5,7 @@ import App from '../App';
 import renderWithRouter from './renderWithRouter';
 
 const checkAllInputs = () => {
-  for (let c = 0; c < +'13'; c += 1) {
+  for (let c = 0; c < +'3'; c += 1) {
     const checkbox = screen.getByTestId(`checkbox-${c}`);
     userEvent.click(checkbox);
     expect(checkbox.checked).toBe(true);
@@ -24,6 +24,12 @@ describe('comidas done teste', () => {
     const button = screen.getByTestId('login-submit-btn');
     userEvent.click(button);
 
+    const bebidas = await screen.findByRole('button', {
+      name: /todrinkpage/i,
+    });
+
+    userEvent.click(bebidas);
+
     const card = await screen.findByTestId('0-recipe-card');
     userEvent.click(card);
 
@@ -31,7 +37,7 @@ describe('comidas done teste', () => {
     userEvent.click(startButton);
 
     const checkbox = await screen.findByRole('checkbox', {
-      name: /lentils 1 cup/i,
+      name: /Ice/i,
     });
     expect(checkbox).toBeDefined();
     expect(checkbox.checked).toBe(false);
@@ -50,8 +56,8 @@ describe('comidas done teste', () => {
     const title = await screen.findByText('Receitas Feitas');
     expect(title).toBeDefined();
 
-    const corba = await screen.findByText('Corba');
-    expect(corba).toBeDefined();
+    const GG = await screen.findByText('GG');
+    expect(GG).toBeDefined();
 
     const whiteHeart = screen.getByRole('img', {
       name: /heart/i,
@@ -79,8 +85,8 @@ describe('comidas done teste', () => {
   it('clica em corba', async () => {
     renderWithRouter(<App />);
 
-    const corba = await screen.findByText('Corba');
-    expect(corba).toBeDefined();
+    const GG = await screen.findByText('GG');
+    expect(GG).toBeDefined();
 
     const whiteHeart = screen.getByRole('img', {
       name: /heart/i,
@@ -91,7 +97,7 @@ describe('comidas done teste', () => {
     userEvent.click(whiteHeart);
     expect(whiteHeart.src).toBe('http://localhost/blackHeartIcon.svg');
 
-    userEvent.click(corba);
+    userEvent.click(GG);
 
     const continuarReceita = await screen.findByRole('button', {
       name: /continuar receita/i,

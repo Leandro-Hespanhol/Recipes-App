@@ -32,9 +32,9 @@ describe('1 - Implemente os elementos da tela principal de receitas', () => {
 
     userEvent.click(bebidas);
 
-    const card = await screen.findByTestId('1-recipe-card');
-    const image = await screen.findByTestId('1-card-img');
-    const name = await screen.findByTestId('1-card-name');
+    const card = await screen.findByTestId('0-recipe-card');
+    const image = await screen.findByTestId('0-card-img');
+    const name = await screen.findByTestId('0-card-name');
 
     expect(card).toBeInTheDocument();
     expect(image).toBeInTheDocument();
@@ -113,21 +113,24 @@ describe('4 - Implemente o filtro das receitas ao clicar no filtro de categoria'
 
     userEvent.click(beef);
 
+    const beefH2 = await screen.findByText('Beef and Mustard Pie');
     const card = await screen.findByTestId('2-recipe-card');
     const image = await screen.findByTestId('2-card-img');
     const name = await screen.findByTestId('2-card-name');
 
+    expect(beefH2).toBeInTheDocument();
     expect(card).toBeInTheDocument();
     expect(image).toBeInTheDocument();
     expect(name).toBeInTheDocument();
 
+    userEvent.click(beef);
+
+    const corba = await screen.findByText('Corba');
+    expect(corba).toBeInTheDocument();
+
     const all = await screen.findByTestId('All-category-filter');
 
     userEvent.click(all);
-
-    const goat = await screen.findByTestId('Goat-category-filter');
-
-    userEvent.click(goat);
   });
 
   it('Caso as receitas sejam de bebida e a categoria seja "Ordinary Drink"', async () => {
@@ -149,5 +152,10 @@ describe('4 - Implemente o filtro das receitas ao clicar no filtro de categoria'
     expect(card).toBeInTheDocument();
     expect(image).toBeInTheDocument();
     expect(name).toBeInTheDocument();
+
+    userEvent.click(drink);
+
+    const GG = await screen.findByText('GG');
+    expect(GG).toBeInTheDocument();
   });
 });
