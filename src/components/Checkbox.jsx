@@ -31,7 +31,6 @@ function Checkbox({
       <input
         type="checkbox"
         id={ inputValue }
-        data-testid={ `checkbox-${inputValue}` }
         name={ inputValue }
         checked={ checked }
         onChange={ onCheck }

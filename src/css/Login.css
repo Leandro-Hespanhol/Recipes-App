@@ -1,3 +1,4 @@
+/* stylelint-disable linebreaks */
 .page-login {
   align-items: center;
   background-image: url('../images/background.jpg');
@@ -14,9 +15,7 @@
   color: white;
   display: flex;
   flex-direction: column;
-  height: 450px;
   padding: 25px;
-  width: 350px;
 }
 
 .login-box p {
@@ -26,19 +25,41 @@
   text-shadow: 2px 2px black;
 }
 
+.password {
+  position: relative;
+}
+
 .login-box input {
   border: none;
   border-radius: 3px;
-  font-size: 1.5em;
-  height: 3vh;
+  font-size: 1.3em;
+  height: 4vh;
   padding: 5px;
+  width: 100%;
+}
+
+.login-box label {
+  width: 100%;
 }
 
 .login-box a {
+  display: grid;
+  place-items: center;
   text-decoration: none;
+  width: 100%;
 }
 
-.login-box button {
+.password-button {
+  position: absolute;
+  z-index: 5;
+  top: 60%;
+  right: 2%;
+  border: none;
+  font-size: 1.5em;
+  background-color: transparent;
+}
+
+.login-bot {
   background-color: red;
   border: none;
   border-radius: 2px;
@@ -50,13 +71,13 @@
   height: 4vh;
   margin-top: 15px;
   place-items: center;
-  width: 325px;
+  width: 100%;
 }
 
-.login-box button:hover {
+.login-bot:hover {
   background-color: rgb(161, 0, 0);
 }
 
-.login-box button:disabled {
+.login-bot:disabled {
   background-color: rgb(252, 87, 87);
 }

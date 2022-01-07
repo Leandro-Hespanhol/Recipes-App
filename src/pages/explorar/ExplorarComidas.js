@@ -19,26 +19,27 @@ export default function ExplorarBebidas() {
   return (
     <div>
       <Header title="Explorar Comidas" buttonDisable />
-      <body>
+      <div className="explorar-page">
 
-        <Link to="../explorar/comidas/ingredientes">
-          <button
-            type="button"
-            data-testid="explore-by-ingredient"
-          >
-            Por Ingredientes
-          </button>
+        <Link to="/recipes-app/explorar/comidas/ingredientes">
+          <div className="explorar ex-food food-ingredint">
+            <h1>By Ingredients</h1>
+          </div>
         </Link>
 
-        <Link to="../explorar/comidas/area">
-          <button type="button" data-testid="explore-by-area">Por Local de Origem</button>
+        <Link to="/recipes-app/explorar/comidas/area">
+          <div className="explorar ex-food area-location">
+            <h1>By Origin</h1>
+          </div>
         </Link>
 
-        <Link to={ `../comidas/${randomMealId}` }>
-          <button type="button" data-testid="explore-surprise">Me Surpreenda!</button>
+        <Link to={ `/recipes-app/comidas/${randomMealId}` }>
+          <div className="explorar ex-food imLucky-food">
+            <h1>I'm Lucky!</h1>
+          </div>
         </Link>
 
-      </body>
+      </div>
       <Footer />
     </div>
   );

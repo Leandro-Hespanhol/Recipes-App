@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const Card = ({ index, image, title }) => (
   <div
+    className="card"
     data-testid={ `${index}-recipe-card` }
   >
     <img

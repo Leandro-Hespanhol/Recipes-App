@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import { removeFavorite, getFavoriteRecipes, addFavorite } from '../services/funcs';
 import shareIcon from '../images/shareIcon.svg';
-import whiteHeart from '../images/whiteHeartIcon.svg';
-import blackHeart from '../images/blackHeartIcon.svg';
+import { FaHeart, FaRegHeart, FaShareAlt } from 'react-icons/fa';
+
 
 const DoneCard = ({
   name,
@@ -14,7 +14,6 @@ const DoneCard = ({
   id,
   type,
   category,
-  doneDate,
   area,
   index,
   tags = '',
@@ -37,14 +36,14 @@ const DoneCard = ({
   const removeItem = () => {
     const newInfo = info.filter((item) => item.id !== id);
     removeFavorite(id);
-    setIsFavorite(false);
+    setIsFavorite(false)
     if (setInfo) {
       setInfo(newInfo);
     }
   };
 
   const showMessage = () => {
-    copy(`http://localhost:3000/${type}s/${id}`);
+    copy(`https://ply3r.github.io/recipes-app/${type}s/${id}`);
     setIsCopy(true);
     setTimeout(() => {
       setIsCopy(false);
@@ -63,7 +62,7 @@ const DoneCard = ({
   ));
 
   return (
-    <div>
+    <div className="card">
       <img
         style={ { width: '150px', height: '150px' } }
         data-testid={ `${index}-horizontal-image` }
@@ -83,39 +82,39 @@ const DoneCard = ({
         ${alcoholicOrNot ? '- Alcoholic' : ''}
         ` }
       </h3>
-      <p
-        data-testid={ `${index}-horizontal-done-date` }
-      >
-        { doneDate }
-      </p>
       { isCopy && <p>Link copiado!</p>}
-      <button
-        data-testid={ `${index}-horizontal-share-btn` }
-        type="button"
-        src={ shareIcon }
-        onClick={ (event) => {
-          event.preventDefault();
-          showMessage();
-        } }
-      >
-        <img src={ shareIcon } alt="share icon" />
-      </button>
-      <button
-        type="button"
-        src={ isFavorite ? blackHeart : whiteHeart }
-        onClick={ (event) => {
-          event.preventDefault();
-          if (isFavorite) {
-            removeItem();
-          } else {
-            addFavorite(`${type}s`, id);
-            setIsFavorite(true);
-          }
-        } }
-        data-testid={ `${index}-horizontal-favorite-btn` }
-      >
-        <img src={ isFavorite ? blackHeart : whiteHeart } alt="heart" />
-      </button>
+      <div className="bot-container">
+        <button
+          className="round-button"
+          type="button"
+          style={ { 'color': 'red' } }
+          onClick={ (event) => {
+            event.preventDefault();
+            if (isFavorite) {
+              removeItem();
+            } else {
+              addFavorite(`${type}s`, id);
+              setIsFavorite(true);
+            }
+          } }
+          data-testid={ `${index}-horizontal-favorite-btn` }
+        >
+        {  isFavorite ? <FaHeart /> : <FaRegHeart /> }
+        </button>
+        <button
+          className="round-button"
+          data-testid={ `${index}-horizontal-share-btn` }
+          type="button"
+          style={ { 'color': 'black' } }
+          src={ shareIcon }
+          onClick={ (event) => {
+            event.preventDefault();
+            showMessage();
+          } }
+        >
+          <FaShareAlt />
+        </button>
+      </div>
       { !!newArray.length && tagsElements }
     </div>
   );

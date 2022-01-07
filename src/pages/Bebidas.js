@@ -42,7 +42,7 @@ const Bebidas = () => {
 
   return (
     <div>
-      <Header type="drinks" title="Bebidas" buttonDisable={ false } />
+      <Header type="drinks" title="Drinks" buttonDisable={ false } />
       <Categories type="drinks" />
       { recipes
         ? <Cards info={ recipes } type="drinks" />

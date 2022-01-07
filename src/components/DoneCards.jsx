@@ -4,7 +4,7 @@ import DoneCard from './DoneCard';
 
 const DoneCards = ({ info, setInfo }) => {
   const cards = info.map((obj, index) => (
-    <Link key={ `${obj.name}-done ${index}` } to={ `/${obj.type}s/${obj.id}` }>
+    <Link key={ `${obj.name}-done ${index}` } to={ `/recipes-app/${obj.type}s/${obj.id}` }>
       <DoneCard
         key={ `${obj.name}-done ${index}` }
         { ...obj }

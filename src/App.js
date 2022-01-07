@@ -17,6 +17,7 @@ import Bebida from './pages/Bebida';
 import NotFound from './pages/NotFound';
 import BebidaInProgress from './pages/BebidaInProgress';
 import ComidaInProgress from './pages/ComidaInProgress';
+import EditPerfil from './pages/editProfile';
 
 function App() {
   return (
@@ -25,82 +26,87 @@ function App() {
         <Switch>
           <Route
             exact
-            path="/"
+            path="/recipes-app/"
             component={ Login }
           />
           <Route
             exact
-            path="/comidas"
+            path="/recipes-app/comidas"
             component={ Comidas }
           />
           <Route
             exact
-            path="/comidas/:id"
+            path="/recipes-app/comidas/:id"
             component={ Comida }
           />
           <Route
             exact
-            path="/comidas/:id/in-progress"
+            path="/recipes-app/comidas/:id/in-progress"
             component={ ComidaInProgress }
           />
           <Route
             exact
-            path="/bebidas/:id"
+            path="/recipes-app/bebidas/:id"
             component={ Bebida }
           />
           <Route
             exact
-            path="/bebidas/:id/in-progress"
+            path="/recipes-app/bebidas/:id/in-progress"
             component={ BebidaInProgress }
           />
           <Route
             exact
-            path="/bebidas"
+            path="/recipes-app/bebidas"
             component={ Bebidas }
           />
           <Route
             exact
-            path="/perfil"
+            path="/recipes-app/perfil"
             component={ Perfil }
+          />
+          <Route 
+            exact
+            path="/recipes-app/edit-profile"
+            component={ EditPerfil }
           />
           <Route
             exact
-            path="/receitas-feitas"
+            path="/recipes-app/receitas-feitas"
             component={ ReceitasFeitas }
           />
           <Route
             exact
-            path="/receitas-favoritas"
+            path="/recipes-app/receitas-favoritas"
             component={ ReceitasFavoritas }
           />
           <Route
             exact
-            path="/explorar"
+            path="/recipes-app/explorar"
             component={ Explorar }
           />
           <Route
             exact
-            path="/explorar/comidas"
+            path="/recipes-app/explorar/comidas"
             component={ ExplorarComidas }
           />
           <Route
             exact
-            path="/explorar/bebidas"
+            path="/recipes-app/explorar/bebidas"
             component={ ExplorarBebidas }
           />
           <Route
             exact
-            path="/explorar/comidas/ingredientes"
+            path="/recipes-app/explorar/comidas/ingredientes"
             render={ (props) => <ExplorarIngredientes { ...props } /> }
           />
           <Route
             exact
-            path="/explorar/bebidas/ingredientes"
+            path="/recipes-app/explorar/bebidas/ingredientes"
             render={ (props) => <ExplorarIngredientes { ...props } /> }
           />
           <Route
             exact
-            path="/explorar/comidas/area"
+            path="/recipes-app/explorar/comidas/area"
             component={ ExplorarComidasArea }
           />
           <Route component={ NotFound } />

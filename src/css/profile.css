@@ -1,0 +1,98 @@
+.profile-page {
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.profile-container {
+  width: 40%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #cc1613;
+  border-radius: 30px;
+  padding: 25px;
+}
+
+.profile-icon {
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  color: #cc1613;
+  border: 2px solid #cc1613;
+  border-radius: 50%;
+  font-size: 5em;
+  margin-bottom: 3vh;
+  overflow: hidden;
+}
+
+.profile-icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.button-container {
+  margin-top: 2vh;
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.profile-button {
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  padding: 5px;
+  background-color: transparent;
+}
+
+.profile-edit-icon {
+  display: flex;
+  width: 80%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-page label {
+  width: 50%;
+  margin-bottom: 15px;
+}
+
+.edit {
+  color: #2f4ac1;
+  border: 2px solid #2f4ac1;
+  margin-bottom: 2vh;
+}
+
+.recipes-done {
+  color: #2fc18c;
+  border: 2px solid #2fc18c;
+}
+
+.recipes-favorite {
+  color: #cc1613;
+  border: 2px solid #cc1613;
+}
+
+.exit-button {
+  padding: 8.5px;
+  color: red;
+  border: 2px solid red;
+}

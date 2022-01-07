@@ -7,6 +7,9 @@ import { getItemById } from '../services/funcs';
 import FavoriteAndShareButtons from '../components/FavoriteAndShareButtons';
 import IngredientsWithCheckbox from '../components/IngredientsWithCheckbox';
 import { doneRecipe } from '../services/funcs2';
+import Header from '../components/Header';
+import Video from '../components/Video';
+import { GiCookingGlove, GiCookingPot } from 'react-icons/gi';
 
 export default function ComidaInProgress({ match: { params: { id } } }) {
   const [numberChecked, setNumberChecked] = useState(0);
@@ -47,43 +50,58 @@ export default function ComidaInProgress({ match: { params: { id } } }) {
       idMeal,
       strMeal,
       strMealThumb,
-      strCategory,
+      strYoutube,
       strInstructions,
     } = info[0];
 
     return (
       <>
-        <img data-testid="recipe-photo" src={ strMealThumb } alt={ strMeal } />
-        <h1 data-testid="recipe-title">{ strMeal }</h1>
+        <Header title="In Progress" singleRecipe />
+        <div style={ { 'backgroundImage': `url(${strMealThumb})` } } className="details-title">
+          <div>
+            <h1 data-testid="recipe-title">{ strMeal }</h1>
+            <FavoriteAndShareButtons type="comidas" id={ idMeal } />
+          </div>
+          <img data-testid="recipe-photo" src={ strMealThumb } alt={ strMeal } />
+        </div>
 
-        <FavoriteAndShareButtons type="comidas" id={ idMeal } />
-
-        <p data-testid="recipe-category">{ strCategory }</p>
-        <h2>Ingredientes</h2>
-
-        <IngredientsWithCheckbox
-          id={ id }
-          type="food"
-          item={ info[0] }
-          numberChecked={ numberChecked }
-          setNumberChecked={ setNumberChecked }
-        />
-
-        <h2>Instruções</h2>
-        <p data-testid="instructions">{ strInstructions }</p>
-
-        <Link to="/receitas-feitas">
-          <button
-            data-testid="finish-recipe-btn"
-            type="button"
-            disabled={ disabled }
-            onClick={ () => {
-              doneRecipe(info[0], 'food');
-            } }
-          >
-            Finalizar receita
-          </button>
-        </Link>
+        <div className="container"> 
+          <Link to="/recipes-app/receitas-feitas">
+            <button
+              className="start-recipe-button"
+              data-testid="finish-recipe-btn"
+              type="button"
+              disabled={ disabled }
+              onClick={ () => {
+                doneRecipe(info[0], 'food');
+              } }
+            >
+              Finalizar receita
+            </button>
+          </Link>
+          <div className="information-container">
+            <div className="info">
+              <h2><GiCookingGlove /> Ingredients</h2>
+              <IngredientsWithCheckbox
+                id={ id }
+                type="food"
+                item={ info[0] }
+                numberChecked={ numberChecked }
+                setNumberChecked={ setNumberChecked }
+              />
+            </div>
+            <div className="info">
+              <h2><GiCookingPot /> Instructions</h2>
+              <p data-testid="instructions">{ strInstructions }</p>
+            </div>
+            { !!strYoutube && (
+              <div className="info">
+                <h2>Video</h2>
+                <Video item={ info[0] } /> 
+              </div>
+            ) }
+          </div>
+        </div>
       </>
     );
   };

@@ -1,12 +1,35 @@
+/* stylelint-disable linebreaks */
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  padding-bottom: 50px;
-  width: 80vw;
+  justify-content: center;
+  padding-bottom: 10vh;
+  width: 100vw;
+}
+
+.category-active {
+  background-color: #881412 !important;
+}
+
+.card {
+  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px 10px;
+  transition: 0.5s ease;
+  width: 300px;
+  height: 300px;
+}
+
+.card:hover {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .cards-container img {
   height: 80%;
+  padding: 5px;
   width: 100%;
 }
 
@@ -16,29 +39,38 @@
 }
 
 .carrousel {
-  align-items: center;
   display: flex;
-  height: 500px;
-  overflow: auto;
+  height: 400px;
   width: 100vw;
+  margin-bottom: 5vh;
+  position: relative;
+  transition: 2s ease;
 }
 
-.carrousel div, .carrousel a {
-  align-items: center;
+.carrousel a {
+  height: 80%;
+  display: grid;
+  color: black;
+  text-decoration: none;
+  place-items: center;
+}
+
+.carrousel div {
+  cursor: pointer;
   display: flex;
+  align-items: center;
   flex-direction: column;
   height: 300px;
   width: 300px;
+  transition: .5s ease;
+}
+
+.carrousel div:hover {
+  width: 310px;
+  height: 310px;
+  z-index: 5;
 }
 
 .carrousel div img {
   width: 100%;
-}
-
-.cards-container div {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 300px;
-  width: 300px;
 }

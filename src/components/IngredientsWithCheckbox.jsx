@@ -6,56 +6,52 @@ import { getInProgressRecipes, startRecipe } from '../services/funcs';
 
 const IngredientsWithCheckBox = ({ item, numberChecked, setNumberChecked, type, id }) => {
   const [localItens, setLocalItens] = useState('');
-  const entries = Object.entries(item);
-
   const findLocalItem = async () => {
     const local = getInProgressRecipes();
+    let localItem;
     if (type === 'food') {
       const { meals } = local;
       const localEntries = Object.entries(meals);
-      let recipe = localEntries.find((arr) => arr[0] === id);
-      if (!recipe) {
-        await startRecipe(type, id);
-        const novaRecipe = getInProgressRecipes();
-        const localRecipe = Object.entries(novaRecipe.meals);
-        recipe = localRecipe.find((arr) => arr[0] === id);
-      }
-      const ingredients = recipe[1];
-      setLocalItens(ingredients);
+      const recipe = localEntries.find((arr) => arr[0] === id);
+      localItem = recipe[1];
     } else {
       const { cocktails } = local;
       const localEntries = Object.entries(cocktails);
-      let recipe = localEntries.find((arr) => arr[0] === id);
-      if (!recipe) {
-        await startRecipe(type, id);
-        const novaRecipe = getInProgressRecipes();
-        const localRecipe = Object.entries(novaRecipe.cocktails);
-        recipe = localRecipe.find((arr) => arr[0] === id);
-      }
-      const ingredients = recipe[1];
-      setLocalItens(ingredients);
+      const recipe = localEntries.find((arr) => arr[0] === id);
+      localItem = recipe[1];
     }
+    const entries = Object.entries(item);
+    const ingredients = entries
+    .filter((arr) => /strIngredient/.test(arr[0]) && arr[1]);
+    const numberChecked = ingredients.filter((arr) => !localItem.includes(arr[1])).length
+    setLocalItens(localItem);
+    setNumberChecked(numberChecked)
   };
 
-  const ingredients = entries
-    .filter((arr) => /strIngredient/.test(arr[0]) && arr[1]);
-  const measures = entries
-    .filter((arr) => /strMeasure/.test(arr[0]) && arr[1]);
+  const renderChecks = () => {
+    const entries = Object.entries(item);
 
-  const checkboxes = ingredients.map((arr, index) => (
-    <Checkbox
-      key={ `${arr[0]}, ${index}` }
-      isChecked={ !localItens.includes(arr[1]) }
-      testid={ `${index}-ingredient-step` }
-      inputValue={ index }
-      numberChecked={ numberChecked }
-      setNumberChecked={ setNumberChecked }
-      type={ type }
-      id={ id }
-      name={ arr[1] }
-      content={ `${arr[1]} ${measures[index] ? measures[index][1] : ''}` }
-    />
-  ));
+    const ingredients = entries
+      .filter((arr) => /strIngredient/.test(arr[0]) && arr[1]);
+    const measures = entries
+      .filter((arr) => /strMeasure/.test(arr[0]) && arr[1]);
+
+    const checkboxes = ingredients.map((arr, index) => (
+      <Checkbox
+        key={ `${arr[0]}, ${index}` }
+        isChecked={ !localItens.includes(arr[1]) }
+        testid={ `${index}-ingredient-step` }
+        inputValue={ index }
+        numberChecked={ numberChecked }
+        setNumberChecked={ setNumberChecked }
+        type={ type }
+        id={ id }
+        name={ arr[1] }
+        content={ `${arr[1]} ${measures[index] ? measures[index][1] : ''}` }
+      />
+    ));
+    return checkboxes
+  }
 
   useEffect(() => {
     findLocalItem();
@@ -63,7 +59,7 @@ const IngredientsWithCheckBox = ({ item, numberChecked, setNumberChecked, type, 
 
   return (
     <div className="checkboxes-ingredients-container">
-      { !!localItens && checkboxes }
+      { !!localItens && renderChecks() }
     </div>
   );
 };
