@@ -23,7 +23,7 @@ export default function ReceitasFeitas() {
   };
 
   const renderItens = () => (
-    <div>
+    <div className="cards-container">
       <DoneCards info={ info } />
     </div>
   );
@@ -38,28 +38,33 @@ export default function ReceitasFeitas() {
 
   return (
     <div>
-      <Header title="Receitas Feitas" buttonDisable />
-      <button
-        data-testid="filter-by-all-btn"
-        type="button"
-        onClick={ () => setFilter('All') }
-      >
-        All
-      </button>
-      <button
-        data-testid="filter-by-food-btn"
-        type="button"
-        onClick={ () => setFilter('comida') }
-      >
-        Food
-      </button>
-      <button
-        data-testid="filter-by-drink-btn"
-        type="button"
-        onClick={ () => setFilter('bebida') }
-      >
-        Drinks
-      </button>
+      <Header title="Finished Recipes" singleRecipe />
+      <div className="categories-buttons" >
+        <button
+          data-testid="filter-by-all-btn"
+          type="button"
+          className={ `${filter === 'All' ? 'category-active': ''}` }
+          onClick={ () => setFilter('All') }
+        >
+          All
+        </button>
+        <button
+          data-testid="filter-by-food-btn"
+          type="button"
+          className={ `${filter === 'comida' ? 'category-active': ''}` }
+          onClick={ () => setFilter('comida') }
+        >
+          Food
+        </button>
+        <button
+          data-testid="filter-by-drink-btn"
+          type="button"
+          className={ `${filter === 'bebida' ? 'category-active': ''}` }
+          onClick={ () => setFilter('bebida') }
+        >
+          Drinks
+        </button>
+      </div>
       { !!info.length && renderItens() }
     </div>
   );

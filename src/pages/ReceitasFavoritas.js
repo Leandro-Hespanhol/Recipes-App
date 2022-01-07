@@ -32,29 +32,34 @@ export default function ReceitasFavoritas() {
 
   return (
     <div>
-      <Header title="Receitas Favoritas" buttonDisable />
-      <button
-        data-testid="filter-by-all-btn"
-        type="button"
-        onClick={ () => setFilter('All') }
-      >
-        All
-      </button>
-      <button
-        data-testid="filter-by-food-btn"
-        type="button"
-        onClick={ () => setFilter('comida') }
-      >
-        Food
-      </button>
-      <button
-        data-testid="filter-by-drink-btn"
-        type="button"
-        onClick={ () => setFilter('bebida') }
-      >
-        Drinks
-      </button>
-      <div>
+      <Header title="Favorite Recipes" singleRecipe />
+      <div className="categories-buttons" >
+        <button
+          data-testid="filter-by-all-btn"
+          type="button"
+          className={ `${filter === 'All' ? 'category-active': ''}` }
+          onClick={ () => setFilter('All') }
+        >
+          All
+        </button>
+        <button
+          data-testid="filter-by-food-btn"
+          type="button"
+          className={ `${filter === 'comida' ? 'category-active': ''}` }
+          onClick={ () => setFilter('comida') }
+        >
+          Food
+        </button>
+        <button
+          data-testid="filter-by-drink-btn"
+          type="button"
+          className={ `${filter === 'bebida' ? 'category-active': ''}` }
+          onClick={ () => setFilter('bebida') }
+        >
+          Drinks
+        </button>
+      </div>
+      <div className="cards-container">
         { !!info.length && <DoneCards setInfo={ setInfo } info={ info } /> }
       </div>
     </div>

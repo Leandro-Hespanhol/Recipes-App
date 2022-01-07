@@ -32,11 +32,11 @@ const StartRecipeButtons = ({ type, id }) => {
   return (
     <div>
       { !complete && (
-        <Link to={ `/${type === 'food' ? 'comidas' : 'bebidas'}/${id}/in-progress` }>
+        <Link to={ `/recipes-app/${type === 'food' ? 'comidas' : 'bebidas'}/${id}/in-progress` }>
           <button
             data-testid="start-recipe-btn"
             type="button"
-            className="buttons"
+            className="start-recipe-button"
             onClick={ () => {
               if (!inProgress) {
                 startRecipe(type, id);

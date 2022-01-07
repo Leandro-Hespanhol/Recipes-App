@@ -40,9 +40,9 @@ export default function SearchBar({ foodName, type }) {
     if (recipes.length === 1) {
       let url = '';
       if (type === 'food') {
-        url = `/comidas/${recipes[0].idMeal}`;
+        url = `/recipes-app/comidas/${recipes[0].idMeal}`;
       } else {
-        url = `/bebidas/${recipes[0].idDrink}`;
+        url = `/recipes-app/bebidas/${recipes[0].idDrink}`;
       }
 
       return <Redirect to={ url } />;

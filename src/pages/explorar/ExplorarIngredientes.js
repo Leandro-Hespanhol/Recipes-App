@@ -22,8 +22,8 @@ export default function ExplorarIngredientes({ location: { pathname } }) {
 
   return (
     <>
-      <Header title="Explorar Ingredientes" buttonDisable />
-      <div>
+      <Header title="Explore Ingredients" singleRecipe />
+      <div className="cards-container">
         { !!info.length && <IngredientCards info={ info } type={ type } /> }
       </div>
       <Footer />

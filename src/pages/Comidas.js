@@ -6,6 +6,7 @@ import Cards from '../components/Cards';
 import Footer from '../components/Footer';
 import { getCategoriesItens, getFirstRecipes } from '../services/funcs';
 import { myContext } from '../context/Provider';
+import '../css/recipesList.css';
 
 const Comidas = () => {
   const {
@@ -41,8 +42,8 @@ const Comidas = () => {
   }, [category]);
 
   return (
-    <div>
-      <Header type="food" title="Comidas" buttonDisable={ false } />
+    <div className="page-list">
+      <Header type="food" title="Foods" buttonDisable={ false } />
       <Categories type="food" />
       { recipes && <Cards info={ recipes } type="food" /> }
       <Footer />

@@ -1,50 +1,43 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
 import mealsIcon from '../images/mealIcon.svg';
 import '../App.css';
 import { myContext } from '../context/Provider';
+import { BiDrink } from 'react-icons/bi'
+import { FaCompass } from 'react-icons/fa'
+import { GiKnifeFork } from 'react-icons/gi'
 
 const Footer = () => {
   const { setFilter } = useContext(myContext);
 
   return (
     <footer data-testid="footer" className="footer">
-      <Link to="/bebidas">
+      <Link to="/recipes-app/bebidas">
         <button
           type="button"
+          className='round-button'
           onClick={ () => setFilter('') }
         >
-          <img
-            src={ drinkIcon }
-            alt="toDrinkPage"
-            data-testid="drinks-bottom-btn"
-          />
+          <BiDrink />
         </button>
       </Link>
-      <Link to="/explorar">
+      <Link to="/recipes-app/explorar">
         <button
           type="button"
+          className='round-button'
           onClick={ () => setFilter('') }
         >
-          <img
-            src={ exploreIcon }
-            alt="toExplorePage"
-            data-testid="explore-bottom-btn"
-          />
+          <FaCompass />
         </button>
       </Link>
-      <Link to="/comidas">
+      <Link to="/recipes-app/comidas">
         <button
           type="button"
+          className='round-button'
           onClick={ () => setFilter('') }
         >
-          <img
-            src={ mealsIcon }
-            alt="toMealsPage"
-            data-testid="food-bottom-btn"
-          />
+          <GiKnifeFork />
         </button>
       </Link>
     </footer>

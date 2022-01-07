@@ -33,6 +33,7 @@ const IngredientCard = ({ type, strIngredient, strIngredient1, index }) => {
       to={ type === 'food' ? '/comidas' : '/bebidas' }
     >
       <div
+        className="card"
         data-testid={ `${index}-ingredient-card` }
       >
         <img
@@ -46,7 +47,7 @@ const IngredientCard = ({ type, strIngredient, strIngredient1, index }) => {
           { type === 'food' ? strIngredient : strIngredient1 }
         </h2>
         { click && <Redirect
-          to={ type === 'food' ? '/comidas' : '/bebidas' }
+          to={ type === 'food' ? '/recipes-app/comidas' : '/recipes-app/bebidas' }
         /> }
       </div>
     </Link>

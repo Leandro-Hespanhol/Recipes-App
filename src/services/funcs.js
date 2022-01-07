@@ -117,12 +117,12 @@ export const getRandomItens = async (type) => {
     const ingredients = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
       .then((res) => res.json())
       .then(({ meals }) => meals);
-    return ingredients.slice(0, +'6');
+    return ingredients.slice(0, '+20');
   }
   const ingredients = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
     .then((res) => res.json())
     .then(({ drinks }) => drinks);
-  return ingredients.slice(0, +'6');
+  return ingredients.slice(0, '+20');
 };
 export const getInProgressRecipes = () => {
   let inProgress = localStorage.getItem('inProgressRecipes');

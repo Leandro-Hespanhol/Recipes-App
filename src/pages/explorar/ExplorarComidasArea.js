@@ -69,8 +69,8 @@ export default function ExplorarComidasArea() {
 
   return (
     <div>
-      <Header title="Explorar Origem" buttonDisable={ false } />
-      <div>
+      <Header title="Explore by origin" singleRecipe />
+      <div className="dropdown-container">
         { !!areas.length && renderDropdown() }
       </div>
       <div>

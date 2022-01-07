@@ -5,34 +5,48 @@ import '../css/Cards.css';
 import Card from './RecipeCard';
 
 const Cards = ({ info, type }) => {
-  const maxItens = info.slice(0, +'12');
-
   const renderItens = () => {
     if (type === 'food') {
-      const elements = maxItens.map(({
+      const elements = info.map(({
         idMeal,
         strMealThumb,
         strMeal,
       }, index) => (
         <Link
-          to={ `/comidas/${idMeal}` }
+          to={ `/recipes-app/comidas/${idMeal}` }
           key={ idMeal }
         >
-          <Card index={ index } image={ strMealThumb } title={ strMeal } />
+          <Card
+            index={ index }
+            image={ strMealThumb }
+            title={ `${strMeal && strMeal.length > +'16' ? (
+              `${strMeal.slice(0, +'16').trim()}...`
+            ) : (
+              strMeal
+            )}` }
+          />
         </Link>
       ));
       return elements;
     }
-    const elements = maxItens.map(({
+    const elements = info.map(({
       idDrink,
       strDrinkThumb,
       strDrink,
     }, index) => (
       <Link
-        to={ `/bebidas/${idDrink}` }
+        to={ `/recipes-app/bebidas/${idDrink}` }
         key={ idDrink }
       >
-        <Card index={ index } image={ strDrinkThumb } title={ strDrink } />
+        <Card
+          index={ index }
+          image={ strDrinkThumb }
+          title={ `${strDrink && strDrink.length > +'16' ? (
+            `${strDrink.slice(0, +'16').trim()}...`
+          ) : (
+            strDrink
+          )}` }
+        />
       </Link>
     ));
     return elements;
