@@ -9,13 +9,20 @@ npm install
 npm install react-icons
 npm start
 ```
+
+```sh
+http://localhost:3000/recipes-app/
+```
+
 ## Core abilities: React, Hooks, Context API and Soft-skills(Group Management).
 
 ## Description: 
 
-# Front-end only
-# Group project executed by 5 colleagues.
+- Front-end only
+- Group project executed by 5 colleagues.
 
+- This recipes app works with 3 static APIs where you can find drinks and meals recipes. The app has some browser filters where you look for the recipes by their names, ingredients or first letter.
+- Every recipe has a detailed page where you can start the recipe, save as favorite or even share it.
 
 
 
